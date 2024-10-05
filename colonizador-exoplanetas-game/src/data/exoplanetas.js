@@ -4,7 +4,7 @@ const exoplanetas = [
         nombre: "11 Comae Berenices B",
         imagen: "11_Comae_Berenices b.png",
         consistencia: "Mayormente Gas Gigante",
-        temperatura: "≈ -120°C", // Gigantes gaseosos suelen tener bajas temperaturas en su atmósfera superior
+        temperatura: "≈ -40°C", // Gigantes gaseosos suelen tener bajas temperaturas en su atmósfera superior
         liquido: "Posiblemente no", // Debido a su naturaleza gaseosa, no se espera líquido en la superficie
         propAdmosfericas: "Hidrógeno y Helio", // Los gigantes gaseosos suelen tener atmósferas dominadas por hidrógeno y helio
         campMagnetico: "Fuerte", // Gigantes gaseosos tienden a tener campos magnéticos considerables
@@ -13,15 +13,15 @@ const exoplanetas = [
         lunas: "1-10 ", 
         distanciaASuSol: "1.178 AU", // Información proporcionada
         OrbitaSol: "323.2 días",
-        probSupervivencia: 60
+        probSupervivencia: 59
       }
       ,
       {
         nombre: "BD+20 594 b",
         imagen: "BD+20_594_b.png", 
-        consistencia: "Mayormente parecido a Neptuno",
-        temperatura: "≈ -150°C", 
-        liquido: "Posiblemente no",
+        consistencia: "Mayormente parecido a la tierra",
+        temperatura: "≈ 15°C", 
+        liquido: "Posiblemente si",
         propAdmosfericas: "Hidrógeno, Helio, Metano", 
         campMagnetico: "Moderado", 
         masaRadio: "22.2481 veces la masa de la Tierra",
@@ -34,9 +34,9 @@ const exoplanetas = [
       {
         nombre: "DP Leonis b",
         imagen: "DP_Leonis_b.png",
-        consistencia: "Mayormente Gas Gigante",
-        temperatura: "≈ -80°C",
-        liquido: "Posiblemente no",
+        consistencia: "Mayormente Tierra",
+        temperatura: "≈ -16°C",
+        liquido: "Posiblemente",
         propAdmosfericas: "Hidrógeno y Helio",
         campMagnetico: "Moderado",
         masaRadio: "6.28 veces la masa de Júpiter",
@@ -44,7 +44,7 @@ const exoplanetas = [
         lunas: "1-10",
         distanciaASuSol: "8.19 AU",
         OrbitaSol: "28 años",
-        probSupervivencia: 88
+        probSupervivencia: 72
       }
       ,
       {
@@ -66,8 +66,8 @@ const exoplanetas = [
       {
         nombre: "GJ 504 b",
         imagen: "GJ 504b.png",
-        consistencia: "Mayormente Gas Gigante",
-        temperatura: "≈ 700°C",
+        consistencia: "Parecido a Marte",
+        temperatura: "≈ 70°C",
         liquido: "Posiblemente no",
         propAdmosfericas: "Hidrógeno, Helio y Vapor de Agua",
         campMagnetico: "Desconocido",
@@ -76,7 +76,7 @@ const exoplanetas = [
         lunas: "0-3",
         distanciaASuSol: "43.5 AU",
         OrbitaSol: "2.3 años",
-        probSupervivencia: 89
+        probSupervivencia: 69
       },
       {
         nombre: "GJ 3929 b",
@@ -91,7 +91,7 @@ const exoplanetas = [
         lunas: "1-3", // Estimación basada en su masa y características
         distanciaASuSol: "0.0252 AU", 
         OrbitaSol: "2.6 días",
-        probSupervivencia: 22 
+        probSupervivencia: 90 
       },
     {
         nombre: "HD 220074 b",
@@ -106,7 +106,7 @@ const exoplanetas = [
         lunas: "1-10",
         distanciaASuSol: "1.6 AU", // Proporcionado
         OrbitaSol: "1.8 años", 
-        probSupervivencia: 94
+        probSupervivencia: 15
       },
         {
         nombre: "GJ 3929 c",
@@ -121,7 +121,7 @@ const exoplanetas = [
         lunas: "0-5", 
         distanciaASuSol: "0.081 AU", 
         OrbitaSol: "15 días",
-        probSupervivencia: 74 
+        probSupervivencia: 28 
       },
 //Tercer lote: los primeros 2 son supervivencia alta y los últimos 2 con baja
         {
@@ -142,10 +142,10 @@ const exoplanetas = [
       {
         nombre: "HD 56414 b",
         imagen: "HD 56414 b.png",
-        consistencia: "Mayormente parecido a Neptuno",
-        temperatura: "≈ -130°C", 
-        liquido: "Posiblemente no", 
-        propAdmosfericas: "Hidrógeno, Helio, Metano", 
+        consistencia: "Mayormente parecido a la Tierra",
+        temperatura: "≈ -13°C", 
+        liquido: "Posiblemente", 
+        propAdmosfericas: "Hidrógeno, Helio, Oxigeno", 
         campMagnetico: "Moderado", 
         masaRadio: "13.3 veces la masa de la Tierra",
         distanciaTierra: "888 años luz",
@@ -167,7 +167,7 @@ const exoplanetas = [
         lunas: "1-10", 
         distanciaASuSol: "1.93 AU", 
         OrbitaSol: "1.9 años",
-        probSupervivencia: 79
+        probSupervivencia: 46
     },
 
     {
@@ -189,8 +189,8 @@ const exoplanetas = [
     {
         nombre: "HD 73583 b",
         imagen: "HD_73583_b.png",
-        consistencia: "Mayormente parecido a Neptuno",
-        temperatura: "≈ -150°C", 
+        consistencia: "Mayormente parecido a Marte",
+        temperatura: "≈ -50°C", 
         liquido: "Posiblemente no", 
         propAdmosfericas: "Hidrógeno, Helio y Metano", 
         campMagnetico: "Moderado", 
@@ -199,7 +199,7 @@ const exoplanetas = [
         lunas: "0-5", 
         distanciaASuSol: "0.0604 AU", 
         OrbitaSol: "6.4 días",
-        probSupervivencia: 88
+        probSupervivencia: 70
     },
     {
         nombre: "HD 73583 c",
@@ -214,7 +214,7 @@ const exoplanetas = [
         lunas: "1-3", 
         distanciaASuSol: "0.1242 AU", 
         OrbitaSol: "18.9 días",
-        probSupervivencia: 4
+        probSupervivencia: 99
     },
     {
         nombre: "HR 8799 b",
@@ -229,7 +229,7 @@ const exoplanetas = [
         lunas: "0-5", 
         distanciaASuSol: "68.0 AU", 
         OrbitaSol: "465.8 años",
-        probSupervivencia: 100 
+        probSupervivencia: 6
     },
     // k2-53 JOSH
 {
@@ -267,7 +267,7 @@ const exoplanetas = [
     nombre: "K2-141 c",
     imagen: "K2-141_c.png",
     consistencia: "Posiblemente rocoso (Super-Tierra)",
-    temperatura: "≈ 600°C",
+    temperatura: "≈ 60°C",
     liquido: "Posiblemente no",
     propAdmosfericas: "Delgada, posiblemente CO2, vapor de agua",
     campMagnetico: "Débil a moderado",
@@ -276,7 +276,7 @@ const exoplanetas = [
     lunas: "0-1",
     distanciaASuSol: "0.0712 AU",
     OrbitaSol: "7.75 días",
-    probSupervivencia: 100
+    probSupervivencia: 70
   },
   {
     nombre: "Kepler-68 b",
@@ -297,7 +297,7 @@ const exoplanetas = [
     nombre: "Kepler-102 b",
     imagen: "Kepler-102_b.png",
     consistencia: "Rocoso (Tierra)",
-    temperatura: "≈ 500°C",
+    temperatura: "≈ 50°C",
     liquido: "Posiblemente no",
     propAdmosfericas: "Delgada, posiblemente CO2",
     campMagnetico: "Débil",
@@ -358,9 +358,9 @@ const exoplanetas = [
     nombre: "Kepler-1423 b",
     imagen: "Kepler-1423 b.png",
     consistencia: "Posiblemente rocoso (Super-Tierra)",
-    temperatura: "≈ 400°C",
-    liquido: "Posiblemente no",
-    propAdmosfericas: "Desconocidas, posiblemente similares a Venus",
+    temperatura: "≈ 40°C",
+    liquido: "Posiblemente",
+    propAdmosfericas: "Desconocidas, posiblemente similares a Martes",
     campMagnetico: "Débil a moderado",
     masaRadio: "Desconocida, 1.82 veces el radio de la Tierra",
     distanciaTierra: "2598 años luz",
@@ -373,7 +373,7 @@ const exoplanetas = [
   {
     nombre: "Kepler-1448 b",
     imagen: "Kepler-1448_b.png",
-    consistencia: "Posiblemente gaseoso (Neptune-like)",
+    consistencia: "Posiblemente gaseoso",
     temperatura: "≈ 100°C",
     liquido: "Posiblemente no en la superficie",
     propAdmosfericas: "Hidrógeno, Helio, posiblemente agua y metano",
@@ -444,7 +444,7 @@ const exoplanetas = [
     lunas: "Desconocido, probablemente ninguna debido a la proximidad a su estrella",
     distanciaASuSol: "1.5 AU",
     OrbitaSol: "≈ 2 años",
-    probSupervivencia: 50
+    probSupervivencia: 0
   },
   {
     nombre: "OGLE-2011-BLG-0251L b",
@@ -465,8 +465,8 @@ const exoplanetas = [
     nombre: "PSR B1257+12 b",
     imagen: "PSR_B1257+12B.png",
     consistencia: "Probablemente rocoso",
-    temperatura: "Desconocida, probablemente muy fría",
-    liquido: "Probablemente no",
+    temperatura: "Desconocida, probablemente  fría",
+    liquido: "Probablemente",
     propAdmosfericas: "Probablemente sin atmósfera significativa",
     campMagnetico: "Débil",
     masaRadio: "0.02 veces la masa de la Tierra",
@@ -505,7 +505,7 @@ const exoplanetas = [
     lunas: "0-1",
     distanciaASuSol: "0.46 AU",
     OrbitaSol: "98.2 días",
-    probSupervivencia: 100
+    probSupervivencia: 10
   },
   {
     nombre: "TOI 700",
@@ -520,7 +520,7 @@ const exoplanetas = [
     lunas: "Desconocido",
     distanciaASuSol: "0.163 AU",
     OrbitaSol: "37.4 días",
-    probSupervivencia: 23
+    probSupervivencia: 89
   },
   {
     nombre: "TOI-5634 A b",
