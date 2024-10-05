@@ -1,32 +1,59 @@
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+  opacity: 0; /* Inicialmente invisible para la animación */
+  transition: opacity 0.5s ease; /* Transición para el efecto de entrada */
+}
+
+.modal-overlay.fade-in {
+  opacity: 1; /* Visible cuando se aplica la clase */
 }
 
 .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
+  position: relative;
+  width: 80%; /* Ajusta el tamaño según sea necesario */
+  height: 80%; /* Ajusta el tamaño según sea necesario */
+  background-size: cover; /* Cubre todo el área */
+  background-position: center; /* Centra la imagen */
+  border-radius: 8px; /* Opcional: bordes redondeados */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px; /* Espaciado interno */
+}
+
+.modal-title {
+  font-size: 2rem; /* Tamaño de fuente grande para el título */
+  margin-bottom: 10px; /* Espacio entre el título y el porcentaje */
+  color: white;
+  font-size: 70px;
+}
+
+.modal-percentage {
+  font-size: 70px;
+}
+.content-survival{
+    color: white;
     text-align: center;
-    position: relative;
-    width: 300px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.986);
 }
 
 .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: red;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.5); /* Fondo semitransparente para el botón */
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px; /* Bordes redondeados para el botón */
 }
