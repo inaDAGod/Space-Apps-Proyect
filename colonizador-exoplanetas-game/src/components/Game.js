@@ -7,7 +7,6 @@ const Game = () => {
   const [selectedPlanet, setSelectedPlanet] = useState(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [gasolina, setGasolina] = useState(80); // Gasolina inicial en 80%
-  const [oxigeno, setOxigeno] = useState(80); // Oxígeno inicial en 80%
 
   useEffect(() => {
     const config = {
@@ -32,6 +31,7 @@ const Game = () => {
     function preload() {
       this.load.image('espacio', process.env.PUBLIC_URL + '/ESPACIO.jpeg');
       this.load.image('nave', process.env.PUBLIC_URL + '/NAVE.png');
+      this.load.image('gasofa', process.env.PUBLIC_URL + '/gasofa.png'); // Cargamos la imagen de Gasofa
       exoplanetas.forEach(planet => {
         this.load.image(planet.nombre, process.env.PUBLIC_URL + '/' + planet.imagen);
       });
@@ -85,12 +85,9 @@ const Game = () => {
           // Actualizar los recursos al llegar al planeta
           if (parseFloat(planetData.probSupervivencia) > 60) {
             setGasolina(prev => Math.min(prev + 20, 100)); // Aumentar la gasolina
-            setOxigeno(prev => Math.min(prev + 20, 100)); // Aumentar el oxígeno
           } else {
             setGasolina(prev => Math.max(prev - 30, 0)); // Reducir la gasolina
-            setOxigeno(prev => Math.max(prev - 30, 0)); // Reducir el oxígeno
           }
-
         }
       });
     }
@@ -111,13 +108,26 @@ const Game = () => {
     };
   }, []);
 
+  // Función para renderizar las imágenes de Gasofa según el porcentaje de gasolina
+  const renderGasofaImages = () => {
+    const gasofaCount = Math.floor(gasolina / 10); // Un "Gasofa" por cada 10% de gasolina
+    const gasofaImages = [];
+    
+    for (let i = 0; i < gasofaCount; i++) {
+      gasofaImages.push(<img key={i} src={process.env.PUBLIC_URL + '/gasofa.png'} alt="Gasolina" style={{ width: '30px', marginRight: '5px' }} />);
+    }
+
+    return gasofaImages;
+  };
+
   return (
     <div id="phaser-container">
       {selectedPlanet && <PlanetInfoCard planetData={selectedPlanet} position={position} />}
       <div style={{ position: 'absolute', top: 20, left: 20, color: 'white' }}>
         <h4>Recursos:</h4>
-        <p>Gasolina: {gasolina}%</p>
-        <p>Oxígeno: {oxigeno}%</p>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {renderGasofaImages()} {/* Renderizamos las imágenes de "Gasofa" */}
+        </div>
       </div>
     </div>
   );
