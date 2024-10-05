@@ -1,28 +1,33 @@
 #textblock {
-    background-color: #210002;
-    height: 100vh;
-  }
+    /*background-image: url('../images/PLANETA_INF.png');*/
+    background-color: #0c1428;
+    height: 1000px;
+    /*background-size: contain;
+    background-position: top center;
+    background-repeat: no-repeat;*/
+    background-size: 50%;
+}
   
-  #textblock-container {
+#textblock-container {
     width: 50%;
     margin: 0 auto;
     padding-top: 70px;
-  }
+}
   
-  #textblock-title {
-    color: #ffaf1b;
+#textblock-title {
+    color: #28c9ac;
     font-size: 35px;
     font-weight: 600;
     font-family: "Helvetica Neue";
-  }
+}
   
-  #textblock-content {
-    color: #ffaf1b;
+#textblock-content {
+    color: #d5e2ed;
     font-size: 20px;
-  }
+}
   
-  #textblock-footer {
-    color: #ffaf1b;
+#textblock-footer {
+    color: #719db2;
     font-size: 15px;
     font-weight: 400;
     position: fixed;
@@ -31,50 +36,95 @@
     justify-content:center;
     align-items:center;
     text-align:center;
-    margin-bottom: 20px;
+    margin-bottom: 20px;  
+}
   
-  }
-  
-  #textblock-devsense {
+#textblock-devsense {
     text-decoration: none;
-    color: #ffaf1b;
+    color: #719db2;
     font-size: 15px;
     font-weight: 600;
-  }
+}
   
-  .animation, .animation_layer {
+.animation, .animation_layer {
       height: 1000px;
-  }
+}
   
-  .animation {
+.animation {
     display: block;
       position: relative;
       z-index: 10;
-  }
+}
   
-  .animation_layer {
+.animation_layer {
       background-position: bottom center;
       background-size: auto 1038px;
       background-repeat: repeat-x;
       width: 100%;
       position: absolute;
-  }
-  .animation_layer.parallax {
+}
+.animation_layer.parallax {
       position: fixed;
-  }
+}
   
-  #ESPACIO {
+#ESPACIO {
     background-image: url('../images/ESPACIO.jpeg');
-  }
+}
   
-  #NAVE {
-    background-image: url('../images/NAVE.png');
-  }
+#NAVE {
+    background-image: url('../images/NAVE_BIG.png');
+    width: 250px;
+    height: 250px;
+    background-size: 40%;
+    background-repeat: no-repeat;
+    display: flex;                  
+    justify-content: center;        
+    align-items: center;            
+    margin: 0 auto;                 
+    position: absolute;             
+    top: 30%;                       
+    left: 50%;                      
+    transform: translate(-50%, -50%); 
+}
+
   
-  #NEBULOSA1 {
-    background-image: url('../images/NEBULOSA1.png');
-  }
-  
-  #NEBULOSA2 {
+#NEBULOSA1 {
     background-image: url('../images/NEBULOSA2.png');
-  }
+}
+  
+#NEBULOSA2 {
+    background-image: url('../images/NEBULOSA1.1.png');
+    opacity: 0.7;
+}
+
+#PLANETA {
+    background-image: url('../images/PLANETA_SUP.png');
+    background-size: 50%;
+    background-repeat: no-repeat;
+    display: flex;                  
+    justify-content: center;        
+    align-items: center;            
+    margin: 0 auto;                 
+    position: absolute;             
+    top: 46.5%;                       
+    left: 50%;                      
+    transform: translate(-50%, -50%); 
+}
+
+#HUMO {
+    background-image: url('../images/HUMO_AZUL_COM.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: flex;                  
+    justify-content: center;        
+    align-items: center;            
+    margin: 0 auto;                 
+    position: absolute;             
+    top: 51%;                       
+    left: 50%;                      
+    transform: translate(-50%, -50%); 
+}
+
+.parallax {
+    background-attachment: fixed;
+}
