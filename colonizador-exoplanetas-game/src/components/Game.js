@@ -2,13 +2,18 @@ import React, { useState, useEffect } from 'react';
 import Phaser from 'phaser';
 import exoplanetas from '../data/exoplanetas';
 import PlanetInfoCard from './PlanetInfoCard'; // Importamos el nuevo componente
+import SurvivalModal from './SurvivalModal'; // Importamos el modal
 
 const Game = () => {
   const [selectedPlanet, setSelectedPlanet] = useState(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [gasolina, setGasolina] = useState(80); // Gasolina inicial en 80%
+<<<<<<< HEAD
   const [currentPlanetIndex, setCurrentPlanetIndex] = useState(0); // Índice del conjunto actual de planetas
   const planetChunkSize = 4; // Tamaño del grupo de planetas que se muestran
+=======
+  const [showModal, setShowModal] = useState(false); // Estado para mostrar el modal
+>>>>>>> 350b0d3ab100d264435e3ba05e81a2b8b53c0843
 
   useEffect(() => {
     const config = {
@@ -126,6 +131,7 @@ const Game = () => {
           } else {
             setGasolina(prev => Math.max(prev - 30, 0)); // Reducir la gasolina
           }
+<<<<<<< HEAD
 
           // Esperar 5 segundos antes de mostrar los siguientes planetas
           setTimeout(() => {
@@ -145,6 +151,12 @@ const Game = () => {
               }
             });
           }, 5000); // Esperar 5 segundos
+=======
+          
+          // Mostrar el modal de supervivencia
+          setShowModal(true);
+          setSelectedPlanet(planetData); // Asegurarse de que el modal tenga los datos correctos
+>>>>>>> 350b0d3ab100d264435e3ba05e81a2b8b53c0843
         }
       });
     }
@@ -180,6 +192,12 @@ const Game = () => {
   return (
     <div id="phaser-container">
       {selectedPlanet && <PlanetInfoCard planetData={selectedPlanet} position={position} />}
+      {showModal && (
+        <SurvivalModal 
+          planetData={selectedPlanet} 
+          onClose={() => setShowModal(false)} 
+        />
+      )}
       <div style={{ position: 'absolute', top: 20, left: 20, color: 'white' }}>
         <h4>Recursos:</h4>
         <div style={{ display: 'flex', alignItems: 'center' }}>
