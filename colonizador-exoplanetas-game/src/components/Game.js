@@ -6,6 +6,8 @@ import PlanetInfoCard from './PlanetInfoCard'; // Importamos el nuevo componente
 const Game = () => {
   const [selectedPlanet, setSelectedPlanet] = useState(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [gasolina, setGasolina] = useState(80); // Gasolina inicial en 80%
+  const [oxigeno, setOxigeno] = useState(80); // Oxígeno inicial en 80%
 
   useEffect(() => {
     const config = {
@@ -63,17 +65,34 @@ const Game = () => {
         });
 
         planet.on('pointerdown', () => {
-          moveShipToPlanet.call(this, pos.x, pos.y);
+          moveShipToPlanet.call(this, pos.x, pos.y, planetData);
         });
       });
     }
 
-    function moveShipToPlanet(x, y) {
+    function moveShipToPlanet(x, y, planetData) {
       this.nave.body.setVelocity(0);
       this.physics.moveTo(this.nave, x, y, 300);
       this.nave.rotation = Phaser.Math.Angle.Between(this.nave.x, this.nave.y, x, y);
       this.targetX = x;
       this.targetY = y;
+
+      // Agregar lógica para los recursos después de que la nave llegue al planeta
+      this.tweens.add({
+        targets: this.nave,
+        duration: 2000, // Duración de la animación
+        onComplete: () => {
+          // Actualizar los recursos al llegar al planeta
+          if (parseFloat(planetData.probSupervivencia) > 60) {
+            setGasolina(prev => Math.min(prev + 20, 100)); // Aumentar la gasolina
+            setOxigeno(prev => Math.min(prev + 20, 100)); // Aumentar el oxígeno
+          } else {
+            setGasolina(prev => Math.max(prev - 30, 0)); // Reducir la gasolina
+            setOxigeno(prev => Math.max(prev - 30, 0)); // Reducir el oxígeno
+          }
+
+        }
+      });
     }
 
     function update() {
@@ -95,6 +114,11 @@ const Game = () => {
   return (
     <div id="phaser-container">
       {selectedPlanet && <PlanetInfoCard planetData={selectedPlanet} position={position} />}
+      <div style={{ position: 'absolute', top: 20, left: 20, color: 'white' }}>
+        <h4>Recursos:</h4>
+        <p>Gasolina: {gasolina}%</p>
+        <p>Oxígeno: {oxigeno}%</p>
+      </div>
     </div>
   );
 };

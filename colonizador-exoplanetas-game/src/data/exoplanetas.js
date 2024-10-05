@@ -12,7 +12,7 @@ const exoplanetas = [
         lunas: "1-10 ", 
         distanciaASuSol: "1.178 AU", // Información proporcionada
         OrbitaSol: "323.2 días",
-        probSupervivencia:"14%"
+        probSupervivencia:"78%"
       }
       ,
       {
