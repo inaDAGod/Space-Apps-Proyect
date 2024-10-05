@@ -39,10 +39,17 @@ const Game = () => {
       exoplanetas.forEach(planet => {
         this.load.image(planet.nombre, process.env.PUBLIC_URL + '/' + planet.imagen);
       });
+      this.load.audio('musicaFondo', process.env.PUBLIC_URL + '/fondo_musica.mp3'); // Cargamos la música de fondo
+      this.load.audio('musicaViaje', process.env.PUBLIC_URL + '/ir_musica.mp3');
+      this.load.audio('musicaModal', process.env.PUBLIC_URL + '/fin_musica.mp3');
     }
 
     function create() {
       this.add.tileSprite(0, 0, this.scale.width, this.scale.height, 'espacio').setOrigin(0, 0);
+
+      // Reproducir la música de fondo
+      const music = this.sound.add('musicaFondo', { loop: true }); // Cargamos el sonido
+      music.play(); // Iniciamos la reproducción de la música
 
       // Posición inicial de la nave
       const naveStartX = 100;
@@ -57,6 +64,7 @@ const Game = () => {
       this.currentPlanets = []; // Array para almacenar los planetas visibles
       displayPlanets.call(this, currentPlanetIndex); // Mostrar los primeros planetas
     }
+
 
     // Función para mostrar un grupo de planetas
     function displayPlanets(startIndex) {
@@ -116,12 +124,15 @@ const Game = () => {
       this.nave.rotation = Phaser.Math.Angle.Between(this.nave.x, this.nave.y, x, y);
       this.targetX = x;
       this.targetY = y;
-
+      // Reproducir la música del viaje
+      const viajeMusic = this.sound.add('musicaViaje', { loop: false }); // Cargamos la música para el viaje
+      viajeMusic.play(); // Iniciamos la reproducción de la música para el viaje
       // Agregar lógica para los recursos después de que la nave llegue al planeta
       this.tweens.add({
         targets: this.nave,
         duration: 2000, // Duración de la animación
         onComplete: () => {
+          
           // Actualizar los recursos al llegar al planeta
           if (parseFloat(planetData.probSupervivencia) > 60) {
             setGasolina(prev => Math.min(prev + 20, 100)); // Aumentar la gasolina
@@ -130,6 +141,8 @@ const Game = () => {
           }
           // Esperar 5 segundos antes de mostrar los siguientes planetas
           setTimeout(() => {
+            const modalMusic = this.sound.add('musicaModal', { loop: false }); // Cargar música para el modal
+          modalMusic.play(); // Iniciar reproducción
             // Suavizar la transición
             this.tweens.add({
               targets: this.currentPlanets,
@@ -142,6 +155,7 @@ const Game = () => {
                 setSelectedPlanet(planetData); // Asegurarse de que el modal tenga los datos correctos
                 setCurrentPlanetIndex(startIndex + planetChunkSize); // Actualizar índice para mostrar los siguientes 4 planetas
                 displayPlanets.call(this, startIndex + planetChunkSize); // Mostrar los siguientes planetas
+               
                 this.tweens.add({
                   targets: this.currentPlanets,
                   alpha: { from: 0, to: 1 }, // Volver a mostrar planetas nuevos
