@@ -1,7 +1,7 @@
 const exoplanetas = [
     {
         nombre: "11 Comae Berenices B",
-        imagen: "11_Comae_Berenices_b.png",
+        imagen: "11_Comae_Berenices b.png",
         consistencia: "Mayormente Gas Gigante",
         temperatura: "≈ -120°C", // Gigantes gaseosos suelen tener bajas temperaturas en su atmósfera superior
         liquido: "Posiblemente no", // Debido a su naturaleza gaseosa, no se espera líquido en la superficie
@@ -63,7 +63,7 @@ const exoplanetas = [
       },
       {
         nombre: "GJ 504 b",
-        imagen: "GJ_504_b.png",
+        imagen: "GJ 504b.png",
         consistencia: "Mayormente Gas Gigante",
         temperatura: "≈ 700°C",
         liquido: "Posiblemente no",
