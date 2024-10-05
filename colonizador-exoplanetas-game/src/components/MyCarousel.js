@@ -13,13 +13,34 @@ const Container = styled.div`
   align-items: center;
 `;
 
+const ProgressBar = styled.div`
+  width: 100%;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex; /* Flex para alinear los segmentos */
+`;
+
+const ProgressSegment = styled.div`
+  height: 100%;
+  flex-grow: 1; /* Permite que cada segmento crezca igual */
+  transition: background-color 0.3s;
+  background-color: ${(props) => {
+    if (props.isCorrect) return "#28c9ac"; // Verde para correcto
+    if (props.isIncorrect) return "#9464ca"; // Rojo para incorrecto
+    if (props.isSkipped) return "#0c1428"; // Azul para saltado
+    return "#52C0F5"; // Azul para neutral
+  }};
+`;
+
 const CardContainer = styled.div`
   perspective: 1000px;
 `;
 
 const Card = styled.div`
-  width: 900px;
-  height: 500px;
+  width: 1000px;
+  height: 400px;
   border-radius: 10px;
   position: relative;
   transition: transform 0.6s;
@@ -49,28 +70,28 @@ const CardFace = styled.div`
 const CardBack = styled(CardFace)`
   transform: rotateY(180deg);
   background-color: ${(props) =>
-    props.noAnswer ? "#52C0F5" : props.isCorrect ? "#4CAF50" : "#FF6B6B"}; /* Azul si no se selecciona respuesta, verde si es correcto, rojo si es incorrecto */
+    props.noAnswer ? "blue" : props.isCorrect ? "#28c9ac" : "#9464ca"}; /* Azul si no se selecciona respuesta, verde si es correcto, rojo si es incorrecto */
 `;
-
 
 const OptionsContainer = styled.div`
   margin-top: 20px;
   display: flex;
-  flex-direction: row;  /* Alinea los elementos en una fila */
-  justify-content: space-between;  /* Añade espacio entre las respuestas */
-  width: 100%;  /* Asegúrate de que el contenedor ocupe todo el ancho */
-  max-width: 900px;  /* Limita el ancho máximo para no ocupar toda la pantalla */
+  flex-direction: row; /* Alinea los elementos en una fila */
+  justify-content: space-between; /* Añade espacio entre las respuestas */
+  width: 100%; /* Asegúrate de que el contenedor ocupe todo el ancho */
+  max-width: 950px; /* Limita el ancho máximo para no ocupar toda la pantalla */
 `;
 
 const AnswerButton = styled.label`
-  background-color: #719db2;
+  background-color: #836bcf;
+  color:white;
   border-radius: 5px;
   padding: 10px 20px;
   margin: 5px;
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s;
-  width: 45%;  /* Reducimos el ancho para que quepan dos respuestas por fila */
+  width: 45%; /* Reducimos el ancho para que quepan dos respuestas por fila */
 
   input {
     display: none;
@@ -86,18 +107,17 @@ const AnswerButton = styled.label`
   }
 `;
 
-
 const NextButtonContainer = styled.div`
-  background-color: yellow;
+  background-color: #232289;
   border-radius: 5px;
   text-align: center;
-  margin-top:10px;
+  margin-top: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
-  width: 30%;
-  
+  width: 20%;
+
   &:hover {
-    background-color: red;
+    background-color: #127bb1;
   }
 
   &.selected {
@@ -107,7 +127,7 @@ const NextButtonContainer = styled.div`
 `;
 
 const StyledButton = styled.button`
-  background-color: #719db2;
+  background-color:#5c6992;
   border-radius: 5px;
   padding: 20px 40px;
   margin: 5px;
@@ -117,9 +137,9 @@ const StyledButton = styled.button`
   width: 98%;
   border: none;
   color: white;
-  
+
   &:hover {
-    background-color: purple;
+    background-color: #d5e2ed;
     color: black;
   }
 `;
@@ -132,6 +152,7 @@ class MyCarousel extends Component {
     isCorrect: null, // Nueva variable para rastrear si es correcto
     noAnswer: false, // Nueva variable para rastrear si no se seleccionó respuesta
     cards: exoplanetQuestions, // Preguntas importadas
+    results: [] // Nuevo estado para rastrear los resultados de las respuestas
   };
 
   shuffleAnswers = (correctAnswer, incorrectAnswers) => {
@@ -146,12 +167,28 @@ class MyCarousel extends Component {
   handleAnswerSelection = (answer) => {
     const currentCard = this.state.cards[this.state.currentCardIndex];
     const isCorrect = currentCard.answer === answer;
-    this.setState({ 
-      isCorrect, 
-      showAnswer: true, 
+    this.setState((prevState) => ({
+      isCorrect,
+      showAnswer: true,
       selectedAnswer: answer,
-      noAnswer: false // Restablece el estado de no respuesta
-    });
+      noAnswer: false, // Restablece el estado de no respuesta
+      results: [
+        ...prevState.results,
+        { isCorrect, question: currentCard.question } // Almacena el resultado de la respuesta
+      ]
+    }));
+  };
+
+  handleSkipQuestion = () => {
+    this.setState((prevState) => ({
+      showAnswer: true,
+      selectedAnswer: null,
+      noAnswer: false, // Restablece el estado de no respuesta
+      results: [
+        ...prevState.results,
+        { isCorrect: null, question: this.state.cards[prevState.currentCardIndex].question, skipped: true } // Almacena el resultado de la respuesta saltada
+      ]
+    }));
   };
 
   handleNext = () => {
@@ -173,12 +210,25 @@ class MyCarousel extends Component {
   };
 
   render() {
-    const { currentCardIndex, showAnswer, cards, isCorrect, noAnswer } = this.state;
+    const { currentCardIndex, showAnswer, cards, isCorrect, noAnswer, results } = this.state;
     const currentCard = cards[currentCardIndex];
     const shuffledAnswers = this.shuffleAnswers(currentCard.answer, currentCard.incorrect_answers);
+    const totalQuestions = cards.length; // Total de preguntas
+    const resultsArray = results.map(result => result.isCorrect); // Array para evaluar los resultados
 
     return (
       <Container>
+        <ProgressBar>
+          {Array.from({ length: totalQuestions }).map((_, index) => (
+            <ProgressSegment
+              key={index}
+              isCorrect={resultsArray[index] === true}
+              isIncorrect={resultsArray[index] === false}
+              isSkipped={results[index]?.skipped} // Verifica si la pregunta fue saltada
+            />
+          ))}
+        </ProgressBar>
+
         <CardContainer>
           <Card className={showAnswer ? "flipped" : ""}>
             <CardFace>{currentCard.question}</CardFace>
@@ -189,11 +239,11 @@ class MyCarousel extends Component {
         </CardContainer>
 
         <OptionsContainer>
-          {!showAnswer && (
+          {!showAnswer &&
             shuffledAnswers.map((answer, index) => (
               <AnswerButton
                 key={index}
-                className={this.state.selectedAnswer === answer ? 'selected' : ''}
+                className={this.state.selectedAnswer === answer ? "selected" : ""}
               >
                 <input
                   type="radio"
@@ -203,14 +253,16 @@ class MyCarousel extends Component {
                 />
                 {answer}
               </AnswerButton>
-            ))
-          )}
+            ))}
         </OptionsContainer>
 
         <NextButtonContainer>
-          <StyledButton onClick={this.handleNext}>
-            Siguiente
-          </StyledButton>
+          {showAnswer && ( // Solo mostrar el botón "Siguiente" si no se ha mostrado la respuesta
+            <StyledButton onClick={this.handleNext}>Siguiente</StyledButton>
+          )}
+          {!showAnswer && ( // Solo mostrar el botón "Saltar" si se ha mostrado la respuesta
+            <StyledButton onClick={this.handleSkipQuestion}>Saltar</StyledButton>
+          )}
         </NextButtonContainer>
       </Container>
     );
