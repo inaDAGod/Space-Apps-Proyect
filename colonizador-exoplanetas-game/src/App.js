@@ -1,5 +1,7 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import MyCarousel from './components/MyCarousel'; // Adjust the path if necessary
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <MyCarousel /> {/* Add the carousel here */}
     </div>
   );
 }
