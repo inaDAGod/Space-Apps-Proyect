@@ -1,0 +1,26 @@
+#phaser-game {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  .planet-info {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  .exploration-result {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+  }
+  
