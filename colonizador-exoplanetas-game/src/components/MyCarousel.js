@@ -11,6 +11,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 `;
 
 const ProgressBar = styled.div`
@@ -28,19 +29,21 @@ const ProgressSegment = styled.div`
   transition: background-color 0.3s;
   background-color: ${(props) => {
     if (props.isCorrect) return "#28c9ac"; // Verde para correcto
-    if (props.isIncorrect) return "#9464ca"; // Rojo para incorrecto
-    if (props.isSkipped) return "#0c1428"; // Azul para saltado
-    return "#52C0F5"; // Azul para neutral
+    if (props.isIncorrect) return "#c92850"; // Rojo para incorrecto
+    if (props.isSkipped) return "#0c1428"; // Negro para saltado
+    return "#d5e2ed"; // Blanco para neutral
   }};
 `;
 
 const CardContainer = styled.div`
   perspective: 1000px;
+  
 `;
 
 const Card = styled.div`
   width: 1000px;
   height: 400px;
+  
   border-radius: 10px;
   position: relative;
   transition: transform 0.6s;
@@ -63,14 +66,17 @@ const CardFace = styled.div`
   font-family: sans-serif;
   font-size: 20px;
   color: #fff;
-  background-color: #52C0F5; /* Azul para el estado inicial */
+  background-color: #5c6992; /* Azul para el estado inicial */
   border-radius: 10px;
 `;
 
 const CardBack = styled(CardFace)`
   transform: rotateY(180deg);
+  font-size:250%;
+  padding-left:2%;
+  padding-right:2%;
   background-color: ${(props) =>
-    props.noAnswer ? "blue" : props.isCorrect ? "#28c9ac" : "#9464ca"}; /* Azul si no se selecciona respuesta, verde si es correcto, rojo si es incorrecto */
+    props.noAnswer ? "blue" : props.isCorrect ? "#28c9ac" : "#c92850"}; /* Azul si no se selecciona respuesta, verde si es correcto, rojo si es incorrecto */
 `;
 
 const OptionsContainer = styled.div`
@@ -99,6 +105,7 @@ const AnswerButton = styled.label`
 
   &:hover {
     background-color: #f0f0f0;
+    color:black;
   }
 
   &.selected {
@@ -127,10 +134,11 @@ const NextButtonContainer = styled.div`
 `;
 
 const StyledButton = styled.button`
-  background-color:#5c6992;
+  background-color:#232289;
   border-radius: 5px;
   padding: 20px 40px;
   margin: 5px;
+  font-size:130%;
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -139,8 +147,8 @@ const StyledButton = styled.button`
   color: white;
 
   &:hover {
-    background-color: #d5e2ed;
-    color: black;
+    background-color: #127bb1;
+    color: white;
   }
 `;
 
