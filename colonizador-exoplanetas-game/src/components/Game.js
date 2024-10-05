@@ -8,12 +8,9 @@ const Game = () => {
   const [selectedPlanet, setSelectedPlanet] = useState(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [gasolina, setGasolina] = useState(80); // Gasolina inicial en 80%
-<<<<<<< HEAD
   const [currentPlanetIndex, setCurrentPlanetIndex] = useState(0); // Índice del conjunto actual de planetas
   const planetChunkSize = 4; // Tamaño del grupo de planetas que se muestran
-=======
   const [showModal, setShowModal] = useState(false); // Estado para mostrar el modal
->>>>>>> 350b0d3ab100d264435e3ba05e81a2b8b53c0843
 
   useEffect(() => {
     const config = {
@@ -131,7 +128,6 @@ const Game = () => {
           } else {
             setGasolina(prev => Math.max(prev - 30, 0)); // Reducir la gasolina
           }
-<<<<<<< HEAD
 
           // Esperar 5 segundos antes de mostrar los siguientes planetas
           setTimeout(() => {
@@ -151,12 +147,10 @@ const Game = () => {
               }
             });
           }, 5000); // Esperar 5 segundos
-=======
           
           // Mostrar el modal de supervivencia
           setShowModal(true);
           setSelectedPlanet(planetData); // Asegurarse de que el modal tenga los datos correctos
->>>>>>> 350b0d3ab100d264435e3ba05e81a2b8b53c0843
         }
       });
     }
