@@ -42,34 +42,58 @@ const Game = () => {
     function create() {
       this.add.tileSprite(0, 0, this.scale.width, this.scale.height, 'espacio').setOrigin(0, 0);
 
-      this.nave = this.physics.add.sprite(100, this.scale.height - 100, 'nave');
+      // Posición inicial de la nave
+      const naveStartX = 100;
+      const naveStartY = this.scale.height - 100;
+
+      this.nave = this.physics.add.sprite(naveStartX, naveStartY, 'nave');
       this.nave.setScale(0.2);
       this.nave.setCollideWorldBounds(true);
       this.nave.setAngle(70);
       this.nave.setDepth(10);
 
-      const planetPositions = [
-        { x: 600, y: 150 },
-        { x: 1200, y: 400 },
-        { x: 800, y: 300 },
-        { x: 300, y: 500 }
-      ];
+      // Función para verificar la distancia entre dos puntos
+      const checkDistance = (x1, y1, x2, y2, minDistance) => {
+        const dist = Phaser.Math.Distance.Between(x1, y1, x2, y2);
+        return dist >= minDistance;
+      };
 
-      planetPositions.forEach((pos, index) => {
-        const planetData = exoplanetas[index % exoplanetas.length];
-        const planet = this.add.image(pos.x, pos.y, planetData.nombre).setOrigin(0.5, 0.5).setScale(0.4);
+      const planetCount = 4; // Mostrar solo los primeros 4 planetas
+      const minPlanetDistance = 150; // Distancia mínima entre planetas
+      const minNaveDistance = 200;  // Distancia mínima de los planetas respecto a la nave
+      const planetPositions = [];
+
+      for (let i = 0; i < planetCount; i++) {
+        let randomX, randomY, isValidPosition;
+
+        // Intentar generar una posición válida que respete la distancia mínima
+        do {
+          randomX = Phaser.Math.Between(100, this.scale.width - 100);
+          randomY = Phaser.Math.Between(100, this.scale.height - 100);
+
+          // Verificar que la nueva posición no esté demasiado cerca de las ya generadas
+          isValidPosition = planetPositions.every(pos => 
+            checkDistance(randomX, randomY, pos.x, pos.y, minPlanetDistance)
+          ) && checkDistance(randomX, randomY, naveStartX, naveStartY, minNaveDistance); // Verificar que no esté cerca de la nave
+        } while (!isValidPosition);
+
+        // Almacenamos la posición válida en el array
+        planetPositions.push({ x: randomX, y: randomY });
+
+        const planetData = exoplanetas[i];
+        const planet = this.add.image(randomX, randomY, planetData.nombre).setOrigin(0.5, 0.5).setScale(0.4);
 
         planet.setInteractive();
 
         planet.on('pointerover', () => {
           setSelectedPlanet(planetData);
-          setPosition({ x: pos.x, y: pos.y });
+          setPosition({ x: randomX, y: randomY });
         });
 
         planet.on('pointerdown', () => {
-          moveShipToPlanet.call(this, pos.x, pos.y, planetData);
+          moveShipToPlanet.call(this, randomX, randomY, planetData);
         });
-      });
+      }
     }
 
     function moveShipToPlanet(x, y, planetData) {
