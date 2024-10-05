@@ -128,3 +128,103 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Build output
+build/
+dist/
+coverage/
+
+# Runtime data
+*.pid
+*.seed
+*.pid.lock
+
+# .env environment variables file
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Cache files
+.cache/
+.tmp/
+
+# Editor directories and files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# ESLint cache
+.eslintcache
+
+# Parcel-bundler cache
+.cache/
+.parcel-cache/
+
+# Sentry CLI files
+.sentryclirc
+
+# Storybook files
+out/
+.storybook-out/
+
+# Prettier formatting log
+.prettierignore
+
+# Jest coverage folder
+/coverage
+
+# TypeScript
+*.tsbuildinfo
+
+# Next.js build output
+.next/
+out/
+*.next
+
+# Ignore .phaser cache files
+.phaser/
+
+# Miscellaneous
+npm-debug.log*
+yarn-debug.log*
+.pnp
+.pnp.js
+
+# Uncomment if you have tests
+# cypress/screenshots/
+# cypress/videos/
+
+# Optional Yarn Integrity file
+.yarn-integrity
+
+# MacOS files
+._*
+
+# Windows thumbnail cache files
+Thumbs.db
+
+# End of .gitignore
+
