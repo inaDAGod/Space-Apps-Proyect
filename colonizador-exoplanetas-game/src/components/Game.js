@@ -39,10 +39,16 @@ const Game = () => {
       exoplanetas.forEach(planet => {
         this.load.image(planet.nombre, process.env.PUBLIC_URL + '/' + planet.imagen);
       });
+      this.load.audio('musicaFondo', process.env.PUBLIC_URL + '/fondo_musica.mp3'); // Cargamos la música de fondo
+      this.load.audio('musicaViaje', process.env.PUBLIC_URL + '/ir_musica.mp3');
     }
 
     function create() {
       this.add.tileSprite(0, 0, this.scale.width, this.scale.height, 'espacio').setOrigin(0, 0);
+
+      // Reproducir la música de fondo
+      const music = this.sound.add('musicaFondo', { loop: true }); // Cargamos el sonido
+      music.play(); // Iniciamos la reproducción de la música
 
       // Posición inicial de la nave
       const naveStartX = 100;
@@ -57,6 +63,7 @@ const Game = () => {
       this.currentPlanets = []; // Array para almacenar los planetas visibles
       displayPlanets.call(this, currentPlanetIndex); // Mostrar los primeros planetas
     }
+
 
     // Función para mostrar un grupo de planetas
     function displayPlanets(startIndex) {
@@ -116,7 +123,9 @@ const Game = () => {
       this.nave.rotation = Phaser.Math.Angle.Between(this.nave.x, this.nave.y, x, y);
       this.targetX = x;
       this.targetY = y;
-
+      // Reproducir la música del viaje
+      const viajeMusic = this.sound.add('musicaViaje', { loop: false }); // Cargamos la música para el viaje
+      viajeMusic.play(); // Iniciamos la reproducción de la música para el viaje
       // Agregar lógica para los recursos después de que la nave llegue al planeta
       this.tweens.add({
         targets: this.nave,
