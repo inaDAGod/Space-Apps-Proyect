@@ -7,6 +7,8 @@ const Game = () => {
   const [selectedPlanet, setSelectedPlanet] = useState(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [gasolina, setGasolina] = useState(80); // Gasolina inicial en 80%
+  const [currentPlanetIndex, setCurrentPlanetIndex] = useState(0); // Índice del conjunto actual de planetas
+  const planetChunkSize = 4; // Tamaño del grupo de planetas que se muestran
 
   useEffect(() => {
     const config = {
@@ -50,37 +52,47 @@ const Game = () => {
       this.nave.setAngle(70);
       this.nave.setDepth(10);
 
-      // Función para verificar la distancia entre dos puntos
-      const checkDistance = (x1, y1, x2, y2, minDistance) => {
-        const dist = Phaser.Math.Distance.Between(x1, y1, x2, y2);
-        return dist >= minDistance;
-      };
+      this.currentPlanets = []; // Array para almacenar los planetas visibles
+      displayPlanets.call(this, currentPlanetIndex); // Mostrar los primeros planetas
+    }
 
-      const planetCount = 4; // Mostrar solo los primeros 4 planetas
+    // Función para mostrar un grupo de planetas
+    function displayPlanets(startIndex) {
       const minPlanetDistance = 150; // Distancia mínima entre planetas
-      const minNaveDistance = 200;  // Distancia mínima de los planetas respecto a la nave
+      const minNaveDistance = 200;  // Distancia mínima respecto a la nave
+      const minSelectedPlanetDistance = 200; // Distancia mínima respecto al planeta seleccionado
+
+      const planetCount = Math.min(exoplanetas.length - startIndex, planetChunkSize); // Elige el número correcto de planetas
       const planetPositions = [];
+
+      // Limpiar planetas actuales
+      this.currentPlanets.forEach(planet => planet.destroy());
+      this.currentPlanets = [];
 
       for (let i = 0; i < planetCount; i++) {
         let randomX, randomY, isValidPosition;
+        const planetData = exoplanetas[startIndex + i];
 
-        // Intentar generar una posición válida que respete la distancia mínima
+        // Intentar generar una posición válida
         do {
           randomX = Phaser.Math.Between(100, this.scale.width - 100);
           randomY = Phaser.Math.Between(100, this.scale.height - 100);
 
-          // Verificar que la nueva posición no esté demasiado cerca de las ya generadas
-          isValidPosition = planetPositions.every(pos => 
-            checkDistance(randomX, randomY, pos.x, pos.y, minPlanetDistance)
-          ) && checkDistance(randomX, randomY, naveStartX, naveStartY, minNaveDistance); // Verificar que no esté cerca de la nave
+          isValidPosition = planetPositions.every(pos =>
+            Phaser.Math.Distance.Between(randomX, randomY, pos.x, pos.y) >= minPlanetDistance
+          ) && Phaser.Math.Distance.Between(randomX, randomY, 100, this.scale.height - 100) >= minNaveDistance;
+
+          // Verificar también que los planetas no estén cerca del planeta seleccionado, si existe uno
+          if (selectedPlanet) {
+            isValidPosition = isValidPosition && Phaser.Math.Distance.Between(randomX, randomY, position.x, position.y) >= minSelectedPlanetDistance;
+          }
+
         } while (!isValidPosition);
 
-        // Almacenamos la posición válida en el array
         planetPositions.push({ x: randomX, y: randomY });
 
-        const planetData = exoplanetas[i];
+        // Crear planeta en una posición válida
         const planet = this.add.image(randomX, randomY, planetData.nombre).setOrigin(0.5, 0.5).setScale(0.4);
-
         planet.setInteractive();
 
         planet.on('pointerover', () => {
@@ -89,12 +101,14 @@ const Game = () => {
         });
 
         planet.on('pointerdown', () => {
-          moveShipToPlanet.call(this, randomX, randomY, planetData);
+          moveShipToPlanet.call(this, randomX, randomY, planetData, startIndex); // Pasamos el índice actual al mover la nave
         });
+
+        this.currentPlanets.push(planet); // Añadir planeta al array de planetas visibles
       }
     }
 
-    function moveShipToPlanet(x, y, planetData) {
+    function moveShipToPlanet(x, y, planetData, startIndex) {
       this.nave.body.setVelocity(0);
       this.physics.moveTo(this.nave, x, y, 300);
       this.nave.rotation = Phaser.Math.Angle.Between(this.nave.x, this.nave.y, x, y);
@@ -112,6 +126,25 @@ const Game = () => {
           } else {
             setGasolina(prev => Math.max(prev - 30, 0)); // Reducir la gasolina
           }
+
+          // Esperar 5 segundos antes de mostrar los siguientes planetas
+          setTimeout(() => {
+            // Suavizar la transición
+            this.tweens.add({
+              targets: this.currentPlanets,
+              alpha: { from: 1, to: 0 }, // Desvanecer planetas actuales
+              duration: 500,
+              onComplete: () => {
+                setCurrentPlanetIndex(startIndex + planetChunkSize); // Actualizar índice para mostrar los siguientes 4 planetas
+                displayPlanets.call(this, startIndex + planetChunkSize); // Mostrar los siguientes planetas
+                this.tweens.add({
+                  targets: this.currentPlanets,
+                  alpha: { from: 0, to: 1 }, // Volver a mostrar planetas nuevos
+                  duration: 500,
+                });
+              }
+            });
+          }, 5000); // Esperar 5 segundos
         }
       });
     }
@@ -130,7 +163,7 @@ const Game = () => {
     return () => {
       game.destroy(true);
     };
-  }, []);
+  }, [currentPlanetIndex]); // Se vuelve a ejecutar cuando cambia el índice de planetas
 
   // Función para renderizar las imágenes de Gasofa según el porcentaje de gasolina
   const renderGasofaImages = () => {
