@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import exoplanetQuestions from "../data/exoplanetQuestions"; // Ajusta la ruta aquí
 
 const Container = styled.div`
   position: relative;
@@ -58,18 +59,11 @@ class MyCarousel extends Component {
     currentCardIndex: 0,
     selectedAnswer: null,
     showAnswer: false,
+    cards: exoplanetQuestions, // Usar el array importado
   };
 
-  cards = [
-    { question: "What is the capital of France?", answer: "Paris" },
-    { question: "What is 2 + 2?", answer: "4" },
-    { question: "What is the largest planet?", answer: "Jupiter" },
-    { question: "What is the chemical symbol for water?", answer: "H2O" },
-    { question: "What year did the Titanic sink?", answer: "1912" }
-  ];
-
   handleAnswerSelection = (answer) => {
-    const currentCard = this.cards[this.state.currentCardIndex];
+    const currentCard = this.state.cards[this.state.currentCardIndex];
     const isCorrect = currentCard.answer === answer;
     if (isCorrect) {
       this.setState({ showAnswer: false, selectedAnswer: null }, this.handleNext);
@@ -80,15 +74,15 @@ class MyCarousel extends Component {
 
   handleNext = () => {
     this.setState((prevState) => ({
-      currentCardIndex: (prevState.currentCardIndex + 1) % this.cards.length,
+      currentCardIndex: (prevState.currentCardIndex + 1) % this.state.cards.length,
       selectedAnswer: null,
       showAnswer: false,
     }));
   };
 
   render() {
-    const { currentCardIndex, selectedAnswer, showAnswer } = this.state;
-    const currentCard = this.cards[currentCardIndex];
+    const { currentCardIndex, selectedAnswer, showAnswer, cards } = this.state;
+    const currentCard = cards[currentCardIndex];
 
     return (
       <Container>
@@ -114,20 +108,20 @@ class MyCarousel extends Component {
               <label>
                 <input
                   type="radio"
-                  value="Incorrect"
-                  checked={selectedAnswer === "Incorrect"}
-                  onChange={() => this.handleAnswerSelection("Incorrect")}
+                  value={currentCard.incorrect_answers[0]} // Primera respuesta incorrecta
+                  checked={selectedAnswer === currentCard.incorrect_answers[0]}
+                  onChange={() => this.handleAnswerSelection(currentCard.incorrect_answers[0])}
                 />
-                Incorrect
+                {currentCard.incorrect_answers[0]} 
               </label>
               <label>
                 <input
                   type="radio"
-                  value="Incorrect"
-                  checked={selectedAnswer === "Incorrect"}
-                  onChange={() => this.handleAnswerSelection("Incorrect")}
+                  value={currentCard.incorrect_answers[1]} // Segunda respuesta incorrecta
+                  checked={selectedAnswer === currentCard.incorrect_answers[1]}
+                  onChange={() => this.handleAnswerSelection(currentCard.incorrect_answers[1])}
                 />
-                Incorrect
+                {currentCard.incorrect_answers[1]} 
               </label>
               <div>
                 <button onClick={() => this.handleAnswerSelection(selectedAnswer)}>Siguiente</button>
@@ -136,7 +130,7 @@ class MyCarousel extends Component {
           )}
           {showAnswer && (
             <>
-              <p>The correct answer is: {currentCard.answer}</p>
+              <p>La respuesta correcta es: {currentCard.answer}</p>
               <button onClick={this.handleNext}>Siguiente</button> {/* Botón para avanzar a la siguiente tarjeta */}
             </>
           )}
