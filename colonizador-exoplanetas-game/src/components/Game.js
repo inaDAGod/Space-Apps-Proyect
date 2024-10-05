@@ -1,8 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Phaser from 'phaser';
-import exoplanetas from '../data/exoplanetas'; // Asegúrate de importar el JSON
+import exoplanetas from '../data/exoplanetas';
+import PlanetInfoCard from './PlanetInfoCard'; // Importamos el nuevo componente
 
 const Game = () => {
+  const [selectedPlanet, setSelectedPlanet] = useState(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
   useEffect(() => {
     const config = {
       type: Phaser.AUTO,
@@ -27,14 +31,12 @@ const Game = () => {
       this.load.image('espacio', process.env.PUBLIC_URL + '/ESPACIO.jpeg');
       this.load.image('nave', process.env.PUBLIC_URL + '/NAVE.png');
       exoplanetas.forEach(planet => {
-        this.load.image(planet.nombre, process.env.PUBLIC_URL + '/' + planet.imagen); // Cargar imagen de cada planeta
+        this.load.image(planet.nombre, process.env.PUBLIC_URL + '/' + planet.imagen);
       });
     }
 
     function create() {
-      this.add
-        .tileSprite(0, 0, this.scale.width, this.scale.height, 'espacio')
-        .setOrigin(0, 0);
+      this.add.tileSprite(0, 0, this.scale.width, this.scale.height, 'espacio').setOrigin(0, 0);
 
       this.nave = this.physics.add.sprite(100, this.scale.height - 100, 'nave');
       this.nave.setScale(0.2);
@@ -42,7 +44,6 @@ const Game = () => {
       this.nave.setAngle(70);
       this.nave.setDepth(10);
 
-      // Crear planetas aleatorios
       const planetPositions = [
         { x: 600, y: 150 },
         { x: 1200, y: 400 },
@@ -51,32 +52,16 @@ const Game = () => {
       ];
 
       planetPositions.forEach((pos, index) => {
-        const planetData = exoplanetas[index % exoplanetas.length]; // Seleccionar un planeta aleatorio
+        const planetData = exoplanetas[index % exoplanetas.length];
         const planet = this.add.image(pos.x, pos.y, planetData.nombre).setOrigin(0.5, 0.5).setScale(0.4);
-        
-        // Interactividad
+
         planet.setInteractive();
-        
-        // Mostrar información al pasar el cursor
+
         planet.on('pointerover', () => {
-          const info = `
-          Nombre: ${planetData.nombre}
-          Consistencia: ${planetData.consistencia}
-          Temperatura: ${planetData.temperatura}
-          Líquido: ${planetData.liquido}
-          Propiedades Atmosféricas: ${planetData.propAdmosfericas}
-          Campo Magnético: ${planetData.campMagnetico}
-          Masa/Radio: ${planetData.masaRadio}
-          Distancia a la Tierra: ${planetData.distanciaTierra}
-          Lunas: ${planetData.lunas}
-          Distancia a su Sol: ${planetData.distanciaASuSol}
-          Órbita alrededor del Sol: ${planetData.OrbitaSol}
-          Probabilidad de Supervivencia: ${planetData.probSupervivencia}
-          `;
-          console.log(info); // Puedes cambiar esto para mostrar en un modal o tooltip
+          setSelectedPlanet(planetData);
+          setPosition({ x: pos.x, y: pos.y });
         });
 
-        // Mover la nave al planeta
         planet.on('pointerdown', () => {
           moveShipToPlanet.call(this, pos.x, pos.y);
         });
@@ -107,7 +92,11 @@ const Game = () => {
     };
   }, []);
 
-  return <div id="phaser-container"></div>;
+  return (
+    <div id="phaser-container">
+      {selectedPlanet && <PlanetInfoCard planetData={selectedPlanet} position={position} />}
+    </div>
+  );
 };
 
 export default Game;
