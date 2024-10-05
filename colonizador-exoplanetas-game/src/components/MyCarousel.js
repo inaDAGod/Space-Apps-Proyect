@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import exoplanetQuestions from "../data/exoplanetQuestions"; // Ajusta la ruta aquí
+import exoplanetQuestions from "../data/exoplanetQuestions"; // Adjust the path here
 
 const Container = styled.div`
   position: relative;
   height: 100vh;
   width: 100%;
   display: flex;
-  flex-direction: column; /* Cambiado a columna para apilar elementos */
+  flex-direction: column; /* Keep this as column for card layout */
   justify-content: center;
   align-items: center;
 `;
@@ -17,7 +17,7 @@ const CardContainer = styled.div`
 `;
 
 const Card = styled.div`
-  width: 500px;
+  width: 800px;
   height: 500px;
   border-radius: 10px;
   position: relative;
@@ -27,6 +27,29 @@ const Card = styled.div`
 
   &.flipped {
     transform: rotateY(180deg);
+  }
+`;
+
+const StyledButton = styled.button`
+  background-color:#719db2;
+  border-radius: 5px;
+  padding: 20px 40px;
+  margin: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 98%;
+  border: none;
+  color: white;
+  
+  &:hover {
+    background-color: purple;
+    color: black;
+  }
+
+  &.selected {
+    background-color: #52C0F5;
+    color: #fff;
   }
 `;
 
@@ -52,6 +75,55 @@ const CardBack = styled(CardFace)`
 
 const OptionsContainer = styled.div`
   margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping if needed */
+  justify-content: center; /* Centers the options */
+`;
+
+const AnswerButton = styled.label`
+  background-color:#719db2; /* White background */
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 5px; /* Space between buttons */
+  text-align: center; /* Center text */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 30%; /* Set width for 3 buttons in a row */
+
+  input {
+    display: none; /* Hides the radio input */
+  }
+
+  &:hover {
+    background-color: #f0f0f0; /* Background color on hover */
+  }
+
+  &.selected {
+    background-color: #52C0F5; /* Background color when selected */
+    color: #fff; /* Changes text color */
+  }
+`;
+
+const NextButtonContainer = styled.div`
+  background-color:yellow; /* White background */
+  border-radius: 5px;
+  text-align: center; /* Center text */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 30%; /* Set width for 3 buttons in a row */
+
+  input {
+    display: none; /* Hides the radio input */
+  }
+
+  &:hover {
+    background-color: red; /* Background color on hover */
+  }
+
+  &.selected {
+    background-color:blue; /* Background color when selected */
+    color: #fff; /* Changes text color */
+  }
 `;
 
 class MyCarousel extends Component {
@@ -59,7 +131,16 @@ class MyCarousel extends Component {
     currentCardIndex: 0,
     selectedAnswer: null,
     showAnswer: false,
-    cards: exoplanetQuestions, // Usar el array importado
+    cards: exoplanetQuestions, // Use the imported array
+  };
+
+  shuffleAnswers = (correctAnswer, incorrectAnswers) => {
+    const allAnswers = [correctAnswer, ...incorrectAnswers];
+    for (let i = allAnswers.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [allAnswers[i], allAnswers[j]] = [allAnswers[j], allAnswers[i]];
+    }
+    return allAnswers;
   };
 
   handleAnswerSelection = (answer) => {
@@ -83,6 +164,7 @@ class MyCarousel extends Component {
   render() {
     const { currentCardIndex, selectedAnswer, showAnswer, cards } = this.state;
     const currentCard = cards[currentCardIndex];
+    const shuffledAnswers = this.shuffleAnswers(currentCard.answer, currentCard.incorrect_answers);
 
     return (
       <Container>
@@ -96,45 +178,39 @@ class MyCarousel extends Component {
         <OptionsContainer>
           {!showAnswer && (
             <>
-              <label>
-                <input
-                  type="radio"
-                  value={currentCard.answer}
-                  checked={selectedAnswer === currentCard.answer}
-                  onChange={() => this.handleAnswerSelection(currentCard.answer)}
-                />
-                {currentCard.answer}
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  value={currentCard.incorrect_answers[0]} // Primera respuesta incorrecta
-                  checked={selectedAnswer === currentCard.incorrect_answers[0]}
-                  onChange={() => this.handleAnswerSelection(currentCard.incorrect_answers[0])}
-                />
-                {currentCard.incorrect_answers[0]} 
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  value={currentCard.incorrect_answers[1]} // Segunda respuesta incorrecta
-                  checked={selectedAnswer === currentCard.incorrect_answers[1]}
-                  onChange={() => this.handleAnswerSelection(currentCard.incorrect_answers[1])}
-                />
-                {currentCard.incorrect_answers[1]} 
-              </label>
-              <div>
-                <button onClick={() => this.handleAnswerSelection(selectedAnswer)}>Siguiente</button>
-              </div>
+              {shuffledAnswers.map((answer, index) => (
+                <AnswerButton
+                  key={index}
+                  className={selectedAnswer === answer ? 'selected' : ''}
+                >
+                  <input
+                    type="radio"
+                    value={answer}
+                    checked={selectedAnswer === answer}
+                    onChange={() => this.handleAnswerSelection(answer)}
+                  />
+                  {answer}
+                </AnswerButton>
+              ))}
             </>
           )}
           {showAnswer && (
             <>
-              <p>La respuesta correcta es: {currentCard.answer}</p>
-              <button onClick={this.handleNext}>Siguiente</button> {/* Botón para avanzar a la siguiente tarjeta */}
+              
             </>
           )}
         </OptionsContainer>
+
+        <NextButtonContainer>
+          {!showAnswer ? (
+            <StyledButton onClick={() => this.handleAnswerSelection(selectedAnswer)}>Siguiente</StyledButton>
+          ) : (
+            <>
+              <StyledButton onClick={this.handleNext}>Siguiente</StyledButton>
+            </>
+          )}
+        </NextButtonContainer>
+
       </Container>
     );
   }
