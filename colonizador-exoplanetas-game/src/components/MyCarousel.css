@@ -13,6 +13,7 @@
   .options-container {
     margin-top: 20px;
     display: flex;
+    margin-left: 2.5%;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
@@ -30,7 +31,7 @@
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s;
-    width: 50%;
+    width: 60%;
     border-radius: 15px;
     box-shadow: 10px 10px 20px white, -10px -10px 20px white;
   }
@@ -53,7 +54,8 @@
     background-color: #232289;
     border-radius: 5px;
     padding: 20px 40px;
-    margin: 5px;
+    margin: 3%;
+    
     font-size: 130%;
     text-align: center;
     cursor: pointer;
@@ -73,9 +75,10 @@
     background-color: #232289;
     border-radius: 5px;
     padding: 20px 40px;
-    
+    margin-bottom: -2.5%;
     margin-top: 1.5%;
     font-size: 130%;
+    margin-left: 2.5%;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s;

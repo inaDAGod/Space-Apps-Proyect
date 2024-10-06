@@ -1,6 +1,7 @@
 .card-container {
     perspective: 1000px;
-    margin-bottom: 2%;
+    align-items: center;
+    margin-bottom: 0.5%;
   }
   
   .card-wrapper {
