@@ -1,64 +1,65 @@
 .help-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .help-container {
-    background: linear-gradient(145deg, #1e1e1e, #292929);
-    border-radius: 15px;
-    box-shadow: 10px 10px 20px #1a1a1a, -10px -10px 20px #4f4f4f;
-    padding: 20px;
-    width: 80%;
-    max-width: 600px;
-    color: white;
-    text-align: center;
-  }
-  
-  .help-title {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #719db2;
-  }
-  
-  .help-description {
-    font-size: 1.2em;
-    margin-bottom: 15px;
-  }
-  
-  .help-list {
-    list-style-type: none;
-    padding: 0;
-    text-align: left;
-  }
-  
-  .help-list li {
-    margin: 10px 0;
-  }
-  
-  .help-list strong {
-    color: #719db2;
-  }
-  
-  .help-close {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #719db2;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .help-close:hover {
-    background-color: #e67e22;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.help-container {
+  background: linear-gradient(145deg, #1e1e1e, #292929);
+  border-radius: 15px;
+  box-shadow: 10px 10px 20px #1a1a1a, -10px -10px 20px #4f4f4f;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  color: white;
+  text-align: center;
+  max-height: 80vh; /* Establece una altura máxima */
+  overflow-y: auto; /* Agrega scroll si el contenido excede la altura */
+}
+
+.help-title {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #719db2;
+}
+
+.help-description {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+.help-list {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+}
+
+.help-list li {
+  margin: 10px 0;
+}
+
+.help-list strong {
+  color: #719db2;
+}
+
+.help-close {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #719db2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.help-close:hover {
+  background-color: #e67e22;
+}
