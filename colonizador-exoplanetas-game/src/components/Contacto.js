@@ -82,7 +82,7 @@ const teamMembers = [
 const Contacto = () => {
   return (
     <div className="contact-page">
-      <div className="container">
+      <div className="containerContactos">
         <h2 className="page-title">Nuestro Equipo</h2>
         <div className="team-grid">
           {teamMembers.map((member, index) => (
