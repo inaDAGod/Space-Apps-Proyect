@@ -16,7 +16,7 @@
 }
 
 .footer-left, .footer-right {
-  width: 45%;  /* Distribuye el ancho entre las dos columnas */
+  width: 45%;
 }
 
 .contact-info {
@@ -26,6 +26,7 @@
 
 .contact-info li {
   margin-bottom: 5px;
+  font-size: 8 !important;
 }
 
 .footer-right {
@@ -39,6 +40,7 @@
 
 .footer-links li {
   margin-bottom: 5px;
+  font-size: 8 !important;
 }
 
 .footer-links li a {

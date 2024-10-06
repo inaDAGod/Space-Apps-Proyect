@@ -31,50 +31,50 @@ const ContactCard = ({ name, photo, description, email, phone, role }) => (
 const teamMembers = [
   {
     name: "Andrea Fernandez",
-    photo: "/Defeat.png",
-    description: "Desarrolladora Frontend con 5 años de experiencia en React y un enfoque en crear interfaces de usuario intuitivas y accesibles.",
-    email: "ana@ejemplo.com",
-    phone: "+1234567890",
+    photo: "/AndreaLaffertt.JPEG",
+    description: "Estudiante de ingenieria de sistemas, apasionada por la teconologia y nuevos retos .",
+    email: "andrea14laffertt@gmail.com",
+    phone: "(+591) 72045492 ",
     role: "Developer"
   },
   {
     name: "Daniela Guzman",
-    photo: "/Defeat.png",
-    description: "Ingeniero de Backend especializado en arquitecturas escalables y microservicios con Go y Python.",
-    email: "carlos@ejemplo.com",
-    phone: "+1234567891",
+    photo: "/DanielaGuzman.JPEG",
+    description: "Estudiante de ingenieria de sistemas, apasionada por la teconologia, programacion competitiva.",
+    email: "DAGod@gmail.com",
+    phone: "(+591) 65141960 ",
     role: "Developer"
   },
   {
-    name: "Jesus Imañaz",
-    photo: "/Defeat.png",
-    description: "Diseñadora UX/UI apasionada por crear experiencias de usuario fluidas y atractivas.",
-    email: "sofia@ejemplo.com",
-    phone: "+1234567892",
+    name: "Jesus Imaña",
+    photo: "/JesusImana.JPEG",
+    description: "Estudiante de ingenieria de sistemas, apasionado por la teconologia, desarrollo web y videojuegos.",
+    email: "jedDan@gmail.com",
+    phone: "(+591) 78813800",
     role: "Developer"
   },
   {
     name: "Josue Nisthaus",
-    photo: "/Defeat.png",
-    description: "Diseñadora UX/UI apasionada por crear experiencias de usuario fluidas y atractivas.",
-    email: "sofia@ejemplo.com",
-    phone: "+1234567892",
+    photo: "/JosueNisthaus.JPEG",
+    description: "Estudiante de ingenieria de sistemas, apasionado por la teconologia, y retos en el desarrollo.",
+    email: "joshnisth@gmail.com",
+    phone: "(+591) 69705051",
     role: "Developer"
   },
   {
     name: "Ayana Siegle",
-    photo: "/Defeat.png",
-    description: "Diseñadora UX/UI apasionada por crear experiencias de usuario fluidas y atractivas.",
-    email: "sofia@ejemplo.com",
-    phone: "+1234567892",
+    photo: "/AyanaSiegle.JPEG",
+    description: "Estudiante de ingenieria de sistemas, apasionada por la teconologia, y desarrollo web",
+    email: "Ansc0307@gmail.com",
+    phone: "(+591) 62273515",
     role: "Developer"
   },
   {
     name: "Luciana Velasco",
-    photo: "/Defeat.png",
-    description: "Diseñadora UX/UI apasionada por crear experiencias de usuario fluidas y atractivas.",
-    email: "sofia@ejemplo.com",
-    phone: "+1234567892",
+    photo: "/LucianaVelasco.JPEG",
+    description: "Estudiante de ingenieria de sistemas, apasionada por la teconologia e inteligencia artifical",
+    email: "lucivp22@gmail.com",
+    phone: "(+591) 67347039",
     role: "Developer"
   }
 ];

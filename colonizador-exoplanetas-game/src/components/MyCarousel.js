@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import './MyCarousel.css'; // Archivo CSS importado
+import './MyCarousel.css'; 
 import exoplanetQuestions from "../data/exoplanetQuestions";
 import Card from "./Cardtri";
 import ProgressBar from "./ProgressBar";
-import HelpTrivia from "./HelpTrivia"; // Asegúrate de importar el componente HelpTrivia
-import ResultsModal from "./ResultsModal"; // Importa el nuevo componente ResultsModal
+import HelpTrivia from "./HelpTrivia"; 
+import ResultsModal from "./ResultsModal";
+import Swal from 'sweetalert2';  // Importar SweetAlert2
 
 class MyCarousel extends Component {
   state = {
@@ -16,7 +17,9 @@ class MyCarousel extends Component {
     cards: exoplanetQuestions,
     results: [],
     showResults: false,
-    showHelp: false
+    showHelp: false,
+    rank: "Cadet",  // Inicia el rango en "Cadet"
+    correctAnswers: 0, // Contador de respuestas correctas
   };
 
   // Función para mezclar las respuestas
@@ -29,20 +32,56 @@ class MyCarousel extends Component {
     return allAnswers;
   };
 
+  // Función para manejar la promoción de rango
+  updateRank = (correctAnswers) => {
+    let newRank = "Cadet";
+    if (correctAnswers >= 18) {
+      newRank = "Galactic Master";
+    } else if (correctAnswers >= 12) {
+      newRank = "Space Admiral";
+    } else if (correctAnswers >= 7) {
+      newRank = "Commander";
+    } else if (correctAnswers >= 3) {
+      newRank = "Cadet";
+    }
+
+    if (newRank !== this.state.rank) {
+      this.setState({ rank: newRank });
+      
+      // Mostrar SweetAlert2 con el nuevo rango
+      Swal.fire({
+        title: '¡Ascenso de Rango!',
+        text: `¡Felicidades! Has sido ascendido a ${newRank}`,
+        icon: 'success',
+        confirmButtonText: '¡Genial!'
+      });
+    }
+  };
+
   // Manejar la selección de respuestas
   handleAnswerSelection = (answer) => {
     const currentCard = this.state.cards[this.state.currentCardIndex];
     const isCorrect = currentCard.answer === answer;
-    this.setState((prevState) => ({
-      isCorrect,
-      showAnswer: true,
-      selectedAnswer: answer,
-      noAnswer: false,
-      results: [
-        ...prevState.results,
-        { isCorrect, question: currentCard.question }
-      ]
-    }));
+    this.setState((prevState) => {
+      const correctAnswers = isCorrect
+        ? prevState.correctAnswers + 1
+        : prevState.correctAnswers;
+
+      // Actualizar el rango basado en el número de respuestas correctas
+      this.updateRank(correctAnswers);
+
+      return {
+        isCorrect,
+        showAnswer: true,
+        selectedAnswer: answer,
+        noAnswer: false,
+        correctAnswers, // Actualiza la cantidad de respuestas correctas
+        results: [
+          ...prevState.results,
+          { isCorrect, question: currentCard.question }
+        ]
+      };
+    });
   };
 
   // Saltar la pregunta
@@ -87,7 +126,9 @@ class MyCarousel extends Component {
       noAnswer: false,
       results: [],
       showResults: false,
-      showHelp: false // Reiniciar showHelp a false
+      showHelp: false,
+      rank: "Cadet",  // Reinicia el rango
+      correctAnswers: 0, // Reinicia las respuestas correctas
     });
   };
 
@@ -105,7 +146,9 @@ class MyCarousel extends Component {
       noAnswer,
       results,
       showResults,
-      showHelp 
+      showHelp,
+      rank, // Nuevo estado del rango
+      correctAnswers // Cantidad de respuestas correctas
     } = this.state;
 
     const currentCard = cards[currentCardIndex];
@@ -115,16 +158,15 @@ class MyCarousel extends Component {
     );
     const totalQuestions = cards.length;
     const resultsArray = results.map((result) => result.isCorrect);
-    const correctAnswers = results.filter((result) => result.isCorrect).length;
 
     return (
-      <div className="container"
+      <div className="containertri"
         style={{
-          backgroundImage: `url('/ESPACIO.jpeg')`, // Establece aquí la imagen de fondo
+          backgroundImage: `url('/ESPACIO.jpeg')`, 
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
-        >
+      >
         <ProgressBar
           totalQuestions={totalQuestions}
           resultsArray={resultsArray}
@@ -177,6 +219,7 @@ class MyCarousel extends Component {
           <ResultsModal
             correctAnswers={correctAnswers}
             totalQuestions={totalQuestions}
+            rank={rank}  // Pasar el rango al modal
             onRestart={this.handleRestart}
           />
         )}
@@ -186,7 +229,6 @@ class MyCarousel extends Component {
           ?
         </button>
 
-        {/* Componente de ayuda */}
         {showHelp && <HelpTrivia onClose={this.toggleHelp} />}
       </div>
     );

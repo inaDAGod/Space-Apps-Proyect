@@ -10,7 +10,7 @@
     width: 50%;
     margin: 0 auto;
     padding-top: 60px;
-    padding-bottom: 60px; /* Agrega espacio extra debajo del bloque de texto */
+    padding-bottom: 0px; /* Agrega espacio extra debajo del bloque de texto */
 }
 
 #textblock-title {
@@ -24,6 +24,7 @@
 #textblock-content {
     color: #d5e2ed;
     font-size: 20px;
+    line-height: 1;
     margin-bottom: 80px;
 }
   

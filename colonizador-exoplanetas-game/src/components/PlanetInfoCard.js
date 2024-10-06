@@ -44,16 +44,16 @@ const PlanetInfoCard = ({ planetData, position }) => {
         <h3>{planetData.nombre}</h3>
       </div>
       <div className="planet-card-details">
-        <p><strong>Numeros de estrellas:</strong> {planetData.NumeroDeEstrellas}</p>
-        <p><strong>Numero de lunas:</strong> {planetData.NumeroDeLunas}</p>
-        <p><strong>Periodo Orbital:</strong> {planetData.PeriodoOrbital} dias</p>
-        <p><strong>Radio Del Planeta:</strong> {planetData.RadioDelPlaneta} radio de la tierra</p>
-        <p><strong>Densidad Del Planeta:</strong> {planetData.DensidadDelPlaneta} g/cm^3</p>
-        <p><strong>Flujo De Insolacion:</strong> {planetData.FlujoDeInsolacion} flujo terrestre</p>
-        <p><strong>Termperatura De Equilibrio:</strong> {planetData.TermperaturaDeEquilibrio} Kelvin</p>
-        <p><strong>Masa Estelar:</strong> {planetData.MasaEstelar} masa solar</p>
-        <p><strong>Luminosidad Estelar:</strong> {planetData.LuminosidadEstelar} log(solar)</p>
-        <p><strong>Distancia a la tierra:</strong> {planetData.Distancia} parcecs</p>
+        <p><strong>Consistencia:</strong> {planetData.consistencia}</p>
+        <p><strong>Temperatura:</strong> {planetData.temperatura}</p>
+        <p><strong>Líquido:</strong> {planetData.liquido}</p>
+        <p><strong>Prop. Atmosféricas:</strong> {planetData.propAdmosfericas}</p>
+        <p><strong>Campo Magnético:</strong> {planetData.campMagnetico}</p>
+        <p><strong>Masa/Radio:</strong> {planetData.masaRadio}</p>
+        <p><strong>Distancia a la Tierra:</strong> {planetData.distanciaTierra}</p>
+        <p><strong>Lunas:</strong> {planetData.lunas}</p>
+        <p><strong>Distancia a su Sol:</strong> {planetData.distanciaASuSol}</p>
+        <p><strong>Órbita alrededor del Sol:</strong> {planetData.OrbitaSol}</p>
       </div>
     </div>
   );
