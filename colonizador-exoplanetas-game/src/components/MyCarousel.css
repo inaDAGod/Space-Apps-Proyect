@@ -16,7 +16,7 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    max-width: 950px;
+    max-width: 1000px;
   }
   
   .answer-button {
@@ -24,11 +24,13 @@
     color: white;
     border-radius: 5px;
     padding: 10px 20px;
-    margin: 5px;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 2%;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s;
-    width: 45%;
+    width: 50%;
     border-radius: 15px;
     box-shadow: 10px 10px 20px white, -10px -10px 20px white;
   }
@@ -59,7 +61,7 @@
     width: 20%;
     color: white;
     border-radius: 15px;
-    box-shadow: 10px 10px 20px #1a1a1a, -10px -10px 20px #4f4f4f;
+    box-shadow: 10px 10px 20px white, -10px -10px 20px white;
   }
   
   .next-button-container:hover {
@@ -71,7 +73,8 @@
     background-color: #232289;
     border-radius: 5px;
     padding: 20px 40px;
-    margin: 5px;
+    
+    margin-top: 1.5%;
     font-size: 130%;
     text-align: center;
     cursor: pointer;
@@ -79,6 +82,8 @@
     width: 20%;
     border: none;
     color: white;
+    border-radius: 15px;
+    box-shadow: 10px 10px 20px white, -10px -10px 20px white;
   }
   
   .styled-button:hover {
@@ -121,7 +126,7 @@
     width: 50px; /* Ancho del botón */
     height: 50px; /* Alto del botón */
     border-radius: 50%; /* Redondear el botón */
-    background-color: #ff4757; /* Color de fondo */
+    background-color: #c92850; /* Color de fondo */
     color: white; /* Color del texto */
     border: none; /* Sin borde */
     font-size: 24px; /* Tamaño de la fuente */
