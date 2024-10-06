@@ -1,0 +1,178 @@
+/* Contenedor principal para evitar scroll extra */
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Parallax sin overflow */
+main {
+    overflow: hidden;
+}
+
+/* Estilo del contenedor de texto */
+#textblock {
+    background-color: #0c1428;
+    padding: 0px;
+}
+
+#textblock-container {
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 60px;
+    padding-bottom: 60px; /* Agrega espacio extra debajo del bloque de texto */
+}
+
+#textblock-title {
+    color: #28c9ac;
+    font-size: 35px;
+    font-weight: 600;
+    font-family: "Helvetica Neue";
+    margin-bottom: 30px;
+}
+
+#textblock-content {
+    color: #d5e2ed;
+    font-size: 20px;
+    margin-bottom: 80px;
+}
+  
+#textblock-footer {
+    color: #d5e2ed;
+    font-size: 15px;
+    font-weight: 400;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    margin-bottom: 50px;  
+}
+  
+#textblock-devsense {
+    text-decoration: none;
+    color: #d5e2ed;
+    font-size: 15px;
+    font-weight: 600;
+}
+  
+.animation, .animation_layer {
+      height: 1000px;
+}
+  
+.animation {
+    display: block;
+      position: relative;
+      z-index: 10;
+}
+  
+.animation_layer {
+      background-position: bottom center;
+      background-size: auto 1038px;
+      background-repeat: repeat-x;
+      width: 100%;
+      position: absolute;
+}
+.animation_layer.parallax {
+      position: fixed;
+}
+  
+#ESPACIO {
+    background-image: url('../images/ESPACIO.jpeg');
+}
+  
+#NAVE {
+    background-image: url('../images/NAVE_BIG.png');
+    width: 250px;
+    height: 250px;
+    background-size: 40%;
+    background-repeat: no-repeat;
+    display: flex;                  
+    justify-content: center;        
+    align-items: center;            
+    margin: 0 auto;                 
+    position: absolute;             
+    top: 30%;                       
+    left: 50%;                      
+    transform: translate(-50%, -50%); 
+}
+
+  
+#NEBULOSA1 {
+    background-image: url('../images/NEBULOSA2.png');
+}
+  
+#NEBULOSA2 {
+    background-image: url('../images/NEBULOSA1.1.png');
+    opacity: 0.7;
+}
+
+#PLANETA {
+    background-image: url('../images/PLANETA_SUP.png');
+    background-size: 50%;
+    background-repeat: no-repeat;
+    display: flex;                  
+    justify-content: center;        
+    align-items: center;            
+    margin: 0 auto;                 
+    position: absolute;             
+    top: 46.5%;                       
+    left: 50%;                      
+    transform: translate(-50%, -50%); 
+}
+
+#HUMO {
+    background-image: url('../images/HUMO_AZUL_COM.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: flex;                  
+    justify-content: center;        
+    align-items: center;            
+    margin: 0 auto;                 
+    position: absolute;             
+    top: 51%;                       
+    left: 50%;                      
+    transform: translate(-50%, -50%); 
+}
+
+.parallax {
+    background-attachment: fixed;
+}
+
+#BOTON-PARTE {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#BOTON-PARTE {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Asegura que el contenedor ocupe toda la pantalla */
+}
+
+#BOTON {
+    background: linear-gradient(90deg, #9464ca, #836bcf);
+    margin-top: 20%;
+    width: 170px;
+    padding: 16px;
+    border-radius: 16px;
+    color: #d5e2ed;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+}
+
+#BOTON:hover {
+    background: linear-gradient(90deg, #0c1428, #5c6992);;
+}
+
+#BOTON:active {
+    background: linear-gradient(90deg, #0c1428, #232289);
+}
