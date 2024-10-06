@@ -1,9 +1,11 @@
 .card-container {
     perspective: 1000px;
+    align-items: center;
+    margin-bottom: 0.5%;
   }
   
   .card-wrapper {
-    width: 1000px;
+    width: 1050px;
     height: 400px;
     border-radius: 10px;
     position: relative;
@@ -32,6 +34,7 @@
     padding-right: 2%;
     background-color: #5c6992;
     border-radius: 10px;
+    
   }
   
   .card-back {
