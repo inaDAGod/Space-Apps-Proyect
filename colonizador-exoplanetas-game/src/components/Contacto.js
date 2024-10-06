@@ -31,7 +31,7 @@ const ContactCard = ({ name, photo, description, email, phone, role }) => (
 const teamMembers = [
   {
     name: "Andrea Fernandez",
-    photo: "/AndreaLaffertt.JPEG",
+    photo: "/AndreaLaffertt.jpeg",
     description: "Estudiante de ingenieria de sistemas, apasionada por la teconologia y nuevos retos .",
     email: "andrea14laffertt@gmail.com",
     phone: "(+591) 72045492 ",
@@ -39,7 +39,7 @@ const teamMembers = [
   },
   {
     name: "Daniela Guzman",
-    photo: "/DanielaGuzman.JPEG",
+    photo: "/DanielaGuzman.jpeg",
     description: "Estudiante de ingenieria de sistemas, apasionada por la teconologia, programacion competitiva.",
     email: "DAGod@gmail.com",
     phone: "(+591) 65141960 ",
@@ -47,7 +47,7 @@ const teamMembers = [
   },
   {
     name: "Jesus Imaña",
-    photo: "/JesusImana.JPEG",
+    photo: "/JesusImana.jpeg",
     description: "Estudiante de ingenieria de sistemas, apasionado por la teconologia, desarrollo web y videojuegos.",
     email: "jedDan@gmail.com",
     phone: "(+591) 78813800",
@@ -55,7 +55,7 @@ const teamMembers = [
   },
   {
     name: "Josue Nisthaus",
-    photo: "/JosueNisthaus.JPEG",
+    photo: "/JosueNisthaus.",
     description: "Estudiante de ingenieria de sistemas, apasionado por la teconologia, y retos en el desarrollo.",
     email: "joshnisth@gmail.com",
     phone: "(+591) 69705051",
@@ -63,7 +63,7 @@ const teamMembers = [
   },
   {
     name: "Ayana Siegle",
-    photo: "/AyanaSiegle.JPEG",
+    photo: "/AyanaSiegle.jpeg",
     description: "Estudiante de ingenieria de sistemas, apasionada por la teconologia, y desarrollo web",
     email: "Ansc0307@gmail.com",
     phone: "(+591) 62273515",
@@ -71,7 +71,7 @@ const teamMembers = [
   },
   {
     name: "Luciana Velasco",
-    photo: "/LucianaVelasco.JPEG",
+    photo: "/LucianaVelasco.jpeg",
     description: "Estudiante de ingenieria de sistemas, apasionada por la teconologia e inteligencia artifical",
     email: "lucivp22@gmail.com",
     phone: "(+591) 67347039",

@@ -45,7 +45,7 @@ const Game = () => {
     function preload() {
       this.load.image('espacio', process.env.PUBLIC_URL + '/ESPACIO.jpeg');
       this.load.image('nave', process.env.PUBLIC_URL + '/NAVE.png');
-      this.load.image('gasofa', process.env.PUBLIC_URL + '/gasofa.png');
+      this.load.image('Gasofa', process.env.PUBLIC_URL + '/Gasofa.png');
       exoplanetas.forEach(planet => {
         this.load.image(planet.nombre, process.env.PUBLIC_URL + '/' + planet.imagen);
       });
@@ -197,14 +197,14 @@ const Game = () => {
   }, [currentPlanetIndex, gameState]);
 
   const renderGasofaImages = () => {
-    const gasofaCount = Math.floor(gasolina / 10);
-    const gasofaImages = [];
+    const GasofaCount = Math.floor(gasolina / 10);
+    const GasofaImages = [];
     
-    for (let i = 0; i < gasofaCount; i++) {
-      gasofaImages.push(<img key={i} src={process.env.PUBLIC_URL + '/gasofa.png'} alt="Gasolina" style={{ width: '30px', marginRight: '5px' }} />);
+    for (let i = 0; i < GasofaCount; i++) {
+      GasofaImages.push(<img key={i} src={process.env.PUBLIC_URL + '/Gasofa.png'} alt="Gasolina" style={{ width: '30px', marginRight: '5px' }} />);
     }
 
-    return gasofaImages;
+    return GasofaImages;
   };
 
   const handleContinue = () => {
