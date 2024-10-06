@@ -5,7 +5,7 @@ import Card from "./Cardtri";
 import ProgressBar from "./ProgressBar";
 import HelpTrivia from "./HelpTrivia"; 
 import ResultsModal from "./ResultsModal";
-import Swal from 'sweetalert2';  // Importar SweetAlert2
+import Swal from 'sweetalert2'; 
 
 class MyCarousel extends Component {
   state = {
@@ -18,11 +18,10 @@ class MyCarousel extends Component {
     results: [],
     showResults: false,
     showHelp: false,
-    rank: "Cadet",  // Inicia el rango en "Cadet"
-    correctAnswers: 0, // Contador de respuestas correctas
+    rank: "Cadet",
+    correctAnswers: 0,
   };
 
-  // Función para mezclar las respuestas
   shuffleAnswers = (correctAnswer, incorrectAnswers) => {
     const allAnswers = [correctAnswer, ...incorrectAnswers];
     for (let i = allAnswers.length - 1; i > 0; i--) {
@@ -32,57 +31,50 @@ class MyCarousel extends Component {
     return allAnswers;
   };
 
-  // Función para manejar la promoción de rango
   updateRank = (correctAnswers) => {
     let newRank = "Cadet";
-    if (correctAnswers >= 18) {
-      newRank = "Galactic Master";
-    } else if (correctAnswers >= 12) {
-      newRank = "Space Admiral";
-    } else if (correctAnswers >= 7) {
-      newRank = "Commander";
-    }
+    if (correctAnswers >= 18) newRank = "Galactic Master";
+    else if (correctAnswers >= 12) newRank = "Space Admiral";
+    else if (correctAnswers >= 7) newRank = "Commander";
 
     if (newRank !== this.state.rank) {
       this.setState({ rank: newRank });
-      
-      // Mostrar SweetAlert2 con el nuevo rango
       Swal.fire({
         title: '¡Ascenso de Rango!',
         text: `¡Felicidades! Has sido ascendido a ${newRank}`,
         icon: 'success',
-        confirmButtonText: '¡Genial!'
+        confirmButtonText: '¡Genial!',
       });
     }
   };
 
-  // Manejar la selección de respuestas
   handleAnswerSelection = (answer) => {
-    const currentCard = this.state.cards[this.state.currentCardIndex];
-    const isCorrect = currentCard.answer === answer;
-    this.setState((prevState) => {
-      const correctAnswers = isCorrect
-        ? prevState.correctAnswers + 1
-        : prevState.correctAnswers;
+    const { currentCardIndex, cards } = this.state;
+    const currentCard = cards[currentCardIndex];
 
-      // Actualizar el rango basado en el número de respuestas correctas
-      this.updateRank(correctAnswers);
+    if (currentCard) {
+      const isCorrect = currentCard.answer === answer;
+      this.setState((prevState) => {
+        const correctAnswers = isCorrect ? prevState.correctAnswers + 1 : prevState.correctAnswers;
 
-      return {
-        isCorrect,
-        showAnswer: true,
-        selectedAnswer: answer,
-        noAnswer: false,
-        correctAnswers, // Actualiza la cantidad de respuestas correctas
-        results: [
-          ...prevState.results,
-          { isCorrect, question: currentCard.question }
-        ]
-      };
-    });
+        // Update rank based on correct answers
+        this.updateRank(correctAnswers);
+
+        return {
+          isCorrect,
+          showAnswer: true,
+          selectedAnswer: answer,
+          noAnswer: false,
+          correctAnswers,
+          results: [
+            ...prevState.results,
+            { isCorrect, question: currentCard.question },
+          ],
+        };
+      });
+    }
   };
 
-  // Saltar la pregunta
   handleSkipQuestion = () => {
     this.setState((prevState) => ({
       showAnswer: true,
@@ -92,47 +84,34 @@ class MyCarousel extends Component {
         ...prevState.results,
         {
           isCorrect: null,
-          question: this.state.cards[prevState.currentCardIndex].question,
-          skipped: true
-        }
-      ]
+          question: this.state.cards[prevState.currentCardIndex]?.question,
+          skipped: true,
+        },
+      ],
     }));
   };
 
-// Avanzar a la siguiente pregunta
-// Avanzar a la siguiente pregunta
-// Avanzar a la siguiente pregunta
-handleNext = () => {
-  // Verifica si estamos en la última pregunta
-  if (this.state.currentCardIndex === this.state.cards.length - 1) {
-    // Asegúrate de que la respuesta de la última pregunta también se procese
-    if (this.state.selectedAnswer !== null) {
-      // Mostrar los resultados después de que se haya procesado la respuesta de la última pregunta
-      this.setState({ showResults: true });
+  handleNext = () => {
+    const { currentCardIndex, cards, selectedAnswer } = this.state;
+
+    if (currentCardIndex === cards.length - 1) {
+      if (selectedAnswer !== null) {
+        this.setState({ showResults: true });
+      }
+    } else {
+      this.setState({ showAnswer: false }, () => {
+        setTimeout(() => {
+          this.setState((prevState) => ({
+            currentCardIndex: prevState.currentCardIndex + 1,
+            selectedAnswer: null,
+            isCorrect: null,
+            noAnswer: false,
+          }));
+        }, 500);
+      });
     }
-  } else {
-    // Asegúrate de voltear primero la tarjeta antes de avanzar
-    this.setState({ showAnswer: false }, () => {
-      // Usa setTimeout para retrasar el avance a la siguiente pregunta
-      setTimeout(() => {
-        this.setState((prevState) => ({
-          currentCardIndex: prevState.currentCardIndex + 1, // Avanza a la siguiente tarjeta
-          selectedAnswer: null, // Reinicia la selección de respuesta
-          isCorrect: null, // Reinicia el estado de si es correcta o no
-          noAnswer: false, // Reinicia la advertencia de no respuesta
-        }));
-      }, 500); // Espera 500ms antes de avanzar, para permitir que la tarjeta se voltee
-    });
-  }
-};
+  };
 
-
-
-
-  // Avanzar a la siguiente pregunta
-
-
-  // Reiniciar el juego
   handleRestart = () => {
     this.setState({
       currentCardIndex: 0,
@@ -143,12 +122,11 @@ handleNext = () => {
       results: [],
       showResults: false,
       showHelp: false,
-      rank: "Cadet",  // Reinicia el rango
-      correctAnswers: 0, // Reinicia las respuestas correctas
+      rank: "Cadet",
+      correctAnswers: 0,
     });
   };
 
-  // Alternar el estado del componente de ayuda
   toggleHelp = () => {
     this.setState((prevState) => ({ showHelp: !prevState.showHelp }));
   };
@@ -163,31 +141,27 @@ handleNext = () => {
       results,
       showResults,
       showHelp,
-      rank, // Nuevo estado del rango
-      correctAnswers // Cantidad de respuestas correctas
+      rank,
+      correctAnswers,
     } = this.state;
 
+    if (!cards.length) {
+      return <div>No hay preguntas disponibles.</div>; // Early return if no cards
+    }
+
     const currentCard = cards[currentCardIndex];
-    const shuffledAnswers = this.shuffleAnswers(
-      currentCard.answer,
-      currentCard.incorrect_answers
-    );
+    const shuffledAnswers = this.shuffleAnswers(currentCard.answer, currentCard.incorrect_answers);
     const totalQuestions = cards.length;
     const resultsArray = results.map((result) => result.isCorrect);
 
     return (
-      <div className="containertri"
-        style={{
+      <div className="containertri" style={{
           backgroundImage: `url('/ESPACIO.jpeg')`, 
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
       >
-        <ProgressBar
-          totalQuestions={totalQuestions}
-          resultsArray={resultsArray}
-          results={results}
-        />
+        <ProgressBar totalQuestions={totalQuestions} resultsArray={resultsArray} results={results} />
 
         {!showResults ? (
           <>
@@ -200,23 +174,17 @@ handleNext = () => {
             />
 
             <div className="options-container">
-              {!showAnswer &&
-                shuffledAnswers.map((answer, index) => (
-                  <label
-                    key={index}
-                    className={`answer-button ${
-                      this.state.selectedAnswer === answer ? "selected" : ""
-                    }`}
-                  >
-                    <input
-                      type="radio"
-                      value={answer}
-                      checked={this.state.selectedAnswer === answer}
-                      onChange={() => this.handleAnswerSelection(answer)}
-                    />
-                    {answer}
-                  </label>
-                ))}
+              {!showAnswer && shuffledAnswers.map((answer, index) => (
+                <label key={index} className={`answer-button ${this.state.selectedAnswer === answer ? "selected" : ""}`}>
+                  <input
+                    type="radio"
+                    value={answer}
+                    checked={this.state.selectedAnswer === answer}
+                    onChange={() => this.handleAnswerSelection(answer)}
+                  />
+                  {answer}
+                </label>
+              ))}
             </div>
 
             {showAnswer && (
@@ -235,12 +203,11 @@ handleNext = () => {
           <ResultsModal
             correctAnswers={correctAnswers}
             totalQuestions={totalQuestions}
-            rank={rank}  // Pasar el rango al modal
+            rank={rank}
             onRestart={this.handleRestart}
           />
         )}
 
-        {/* Botón redondo para abrir ayuda */}
         <button className="help-button" onClick={this.toggleHelp}>
           ?
         </button>
