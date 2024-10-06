@@ -3,6 +3,7 @@ import './MyCarousel.css'; // Archivo CSS importado
 import exoplanetQuestions from "../data/exoplanetQuestions";
 import Card from "./Cardtri";
 import ProgressBar from "./ProgressBar";
+import HelpTrivia from "./HelpTrivia"; // Asegúrate de importar el componente HelpTrivia
 
 class MyCarousel extends Component {
   state = {
@@ -13,9 +14,11 @@ class MyCarousel extends Component {
     noAnswer: false,
     cards: exoplanetQuestions,
     results: [],
-    showResults: false
+    showResults: false,
+    showHelp: false
   };
 
+  // Función para mezclar las respuestas
   shuffleAnswers = (correctAnswer, incorrectAnswers) => {
     const allAnswers = [correctAnswer, ...incorrectAnswers];
     for (let i = allAnswers.length - 1; i > 0; i--) {
@@ -25,6 +28,7 @@ class MyCarousel extends Component {
     return allAnswers;
   };
 
+  // Manejar la selección de respuestas
   handleAnswerSelection = (answer) => {
     const currentCard = this.state.cards[this.state.currentCardIndex];
     const isCorrect = currentCard.answer === answer;
@@ -40,6 +44,7 @@ class MyCarousel extends Component {
     }));
   };
 
+  // Saltar la pregunta
   handleSkipQuestion = () => {
     this.setState((prevState) => ({
       showAnswer: true,
@@ -56,6 +61,7 @@ class MyCarousel extends Component {
     }));
   };
 
+  // Avanzar a la siguiente pregunta
   handleNext = () => {
     if (this.state.currentCardIndex === this.state.cards.length - 1) {
       this.setState({ showResults: true });
@@ -70,6 +76,7 @@ class MyCarousel extends Component {
     }
   };
 
+  // Reiniciar el juego
   handleRestart = () => {
     this.setState({
       currentCardIndex: 0,
@@ -78,8 +85,14 @@ class MyCarousel extends Component {
       isCorrect: null,
       noAnswer: false,
       results: [],
-      showResults: false
+      showResults: false,
+      showHelp: false // Reiniciar showHelp a false
     });
+  };
+
+  // Alternar el estado del componente de ayuda
+  toggleHelp = () => {
+    this.setState((prevState) => ({ showHelp: !prevState.showHelp }));
   };
 
   render() {
@@ -90,8 +103,10 @@ class MyCarousel extends Component {
       isCorrect,
       noAnswer,
       results,
-      showResults
+      showResults,
+      showHelp 
     } = this.state;
+
     const currentCard = cards[currentCardIndex];
     const shuffledAnswers = this.shuffleAnswers(
       currentCard.answer,
@@ -99,7 +114,6 @@ class MyCarousel extends Component {
     );
     const totalQuestions = cards.length;
     const resultsArray = results.map((result) => result.isCorrect);
-
     const correctAnswers = results.filter((result) => result.isCorrect).length;
 
     return (
@@ -156,14 +170,21 @@ class MyCarousel extends Component {
           <div className="results-modal">
             <h2>Resultados del Cuestionario</h2>
             <p>
-              Respondiste correctamente {correctAnswers} de {totalQuestions}{" "}
-              preguntas.
+              Respondiste correctamente {correctAnswers} de {totalQuestions} preguntas.
             </p>
             <button className="modal-button" onClick={this.handleRestart}>
               Reiniciar
             </button>
           </div>
         )}
+
+        {/* Botón redondo para abrir ayuda */}
+        <button className="help-button" onClick={this.toggleHelp}>
+          ?
+        </button>
+
+        {/* Componente de ayuda */}
+        {showHelp && <HelpTrivia onClose={this.toggleHelp} />}
       </div>
     );
   }

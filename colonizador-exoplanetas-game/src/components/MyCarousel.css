@@ -107,3 +107,24 @@
     background-color: #127bb1;
   }
   
+
+  .help-button {
+    position: fixed; /* Posiciona el botón en la parte inferior derecha */
+    bottom: 20px; /* Ajusta el espaciado inferior */
+    right: 20px; /* Ajusta el espaciado a la derecha */
+    width: 50px; /* Ancho del botón */
+    height: 50px; /* Alto del botón */
+    border-radius: 50%; /* Redondear el botón */
+    background-color: #ff4757; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    font-size: 24px; /* Tamaño de la fuente */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra del botón */
+    transition: background-color 0.3s; /* Transición suave para el color */
+  }
+  
+  .help-button:hover {
+    background-color: #e84118; /* Color al pasar el mouse */
+  }
+  
