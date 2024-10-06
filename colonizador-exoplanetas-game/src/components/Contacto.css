@@ -1,11 +1,11 @@
 .contact-page {
   background: linear-gradient(to bottom right, #0c1428, #232289);
-  min-height: 250vh;
-  /* padding: 10rem 1rem; */
+  min-height: 150vh;
+  padding: 3rem 1rem;
   height: auto;
 }
 
-.container {
+.containerContactos {
   max-width: 7000px;
   /* margin: 10rem auto 0 auto;  Añade un margen superior de 5rem */
   height: auto;
