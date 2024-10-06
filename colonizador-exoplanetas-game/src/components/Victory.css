@@ -1,0 +1,52 @@
+.victory-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgba(0, 255, 0, 0.1); /* Fondo semitransparente */
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.victory-box {
+  text-align: center;
+  background-color: #28c9ac; /* Verde/Azul de la paleta */
+  padding: 20px;
+  border-radius: 10px;
+  width: 60vh;
+  box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.6);
+  color: white;
+}
+
+.victory-box h1 {
+  margin-bottom: 20px;
+}
+
+.victory-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.victory-button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #127bb1;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.victory-button:hover {
+  background-color: #0c1428;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
