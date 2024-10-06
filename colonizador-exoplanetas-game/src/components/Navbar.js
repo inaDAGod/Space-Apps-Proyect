@@ -4,6 +4,7 @@ import './Navbar.css';  // Asegúrate de tener este archivo para estilos persona
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  // eslint-disable-next-line
   let lastScrollY = window.scrollY;
 
   const toggleMenu = () => {
@@ -30,7 +31,7 @@ const Navbar = () => {
   return (
     <nav className={`navbar ${isVisible ? '' : 'hidden'}`}>
       <div className="navbar-container">
-        <a href="#home" className="navbar-logo">NasaAmigos</a>
+        <a href="#home" className="navbar-logo">EXOplanetas</a>
         <div className={`navbar-menu ${isOpen ? 'active' : ''}`}>
           <ul className="navbar-list">
             <li><a href="#play">Play</a></li>
