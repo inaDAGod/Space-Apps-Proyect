@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import exoplanetQuestions from "../data/exoplanetQuestions"; // Ajusta la ruta si es necesario
+import exoplanetQuestions from "../data/exoplanetQuestions";
+import Card from "./Cardtri";
+import ProgressBar from "./ProgressBar";
 
 const Container = styled.div`
   position: relative;
@@ -10,69 +12,6 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const ProgressBar = styled.div`
-  width: 100%;
-  height: 20px;
-  background-color: #ddd;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  display: flex;
-`;
-
-const ProgressSegment = styled.div`
-  height: 100%;
-  flex-grow: 1;
-  transition: background-color 0.3s;
-  background-color: ${(props) => {
-    if (props.isCorrect) return "#28c9ac"; // Verde para correcto
-    if (props.isIncorrect) return "#c92850"; // Rojo para incorrecto
-    if (props.isSkipped) return "#0c1428"; // Negro para saltado
-    return "#d5e2ed"; // Blanco para neutral
-  }};
-`;
-
-const CardContainer = styled.div`
-  perspective: 1000px;
-`;
-
-const Card = styled.div`
-  width: 1000px;
-  height: 400px;
-  border-radius: 10px;
-  position: relative;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  cursor: pointer;
-
-  &.flipped {
-    transform: rotateY(180deg);
-  }
-`;
-
-const CardFace = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: sans-serif;
-  font-size: 20px;
-  color: #fff;
-  background-color: #5c6992;
-  border-radius: 10px;
-`;
-
-const CardBack = styled(CardFace)`
-  transform: rotateY(180deg);
-  font-size: 250%;
-  padding-left: 2%;
-  padding-right: 2%;
-  background-color: ${(props) =>
-    props.noAnswer ? "blue" : props.isCorrect ? "#28c9ac" : "#c92850"};
 `;
 
 const OptionsContainer = styled.div`
@@ -111,25 +50,21 @@ const AnswerButton = styled.label`
 `;
 
 const NextButtonContainer = styled.div`
-  background-color: #232289;
+   background-color: #232289;
   border-radius: 5px;
+  padding: 20px 40px;
+  margin: 5px;
+  font-size: 130%;
   text-align: center;
-  margin-top: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
   width: 20%;
-  padding-left:20%;
-  padding-right:20%;
-  font-size:250%;
-  color:white;
+  border: none;
+  color: white;
 
   &:hover {
     background-color: #127bb1;
-  }
-
-  &.selected {
-    background-color: blue;
-    color: #fff;
+    color: white;
   }
 `;
 
@@ -188,7 +123,7 @@ class MyCarousel extends Component {
     noAnswer: false,
     cards: exoplanetQuestions,
     results: [],
-    showResults: false // Estado para mostrar los resultados
+    showResults: false
   };
 
   shuffleAnswers = (correctAnswer, incorrectAnswers) => {
@@ -279,27 +214,21 @@ class MyCarousel extends Component {
 
     return (
       <Container>
-        <ProgressBar>
-          {Array.from({ length: totalQuestions }).map((_, index) => (
-            <ProgressSegment
-              key={index}
-              isCorrect={resultsArray[index] === true}
-              isIncorrect={resultsArray[index] === false}
-              isSkipped={results[index]?.skipped}
-            />
-          ))}
-        </ProgressBar>
+        <ProgressBar
+          totalQuestions={totalQuestions}
+          resultsArray={resultsArray}
+          results={results}
+        />
 
         {!showResults ? (
           <>
-            <CardContainer>
-              <Card className={showAnswer ? "flipped" : ""}>
-                <CardFace>{currentCard.question}</CardFace>
-                <CardBack isCorrect={isCorrect} noAnswer={noAnswer}>
-                  {currentCard.detailed_answer}
-                </CardBack>
-              </Card>
-            </CardContainer>
+            <Card
+              question={currentCard.question}
+              detailedAnswer={currentCard.detailed_answer}
+              isCorrect={isCorrect}
+              noAnswer={noAnswer}
+              showAnswer={showAnswer}
+            />
 
             <OptionsContainer>
               {!showAnswer &&
