@@ -1,21 +1,5 @@
 import React from "react";
-import styled from "styled-components";
-
-const ProgressBarWrapper = styled.div`
-  width: 100%;
-  background-color: lightgray;
-  height: 15px;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 2%;
-  display: flex;
-`;
-
-const ProgressFiller = styled.div`
-  height: 100%;
-  width: ${(props) => props.width}%;
-  background-color: ${(props) => props.color};
-`;
+import './ProgressBar.css'; // Archivo CSS importado
 
 const ProgressBar = ({ totalQuestions, resultsArray, results }) => {
   const progressElements = results.map((result, index) => {
@@ -29,10 +13,19 @@ const ProgressBar = ({ totalQuestions, resultsArray, results }) => {
       color = "#c92850"; // Color para respuestas incorrectas
     }
 
-    return <ProgressFiller key={index} width={(1 / totalQuestions) * 100} color={color} />;
+    return (
+      <div
+        key={index}
+        className="progress-filler"
+        style={{
+          width: `${(1 / totalQuestions) * 100}%`,
+          backgroundColor: color,
+        }}
+      />
+    );
   });
 
-  return <ProgressBarWrapper>{progressElements}</ProgressBarWrapper>;
+  return <div className="progress-bar-wrapper">{progressElements}</div>;
 };
 
 export default ProgressBar;
