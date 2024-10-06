@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import exoplanetQuestions from "../data/exoplanetQuestions"; // Ajusta la ruta si es necesario
+import exoplanetQuestions from "../data/exoplanetQuestions";
+import Card from "./Cardtri";
+import ProgressBar from "./ProgressBar";
 
-// Estilos del contenedor principal
 const Container = styled.div`
   position: relative;
   height: 100vh;
@@ -13,64 +14,25 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const CardContainer = styled.div`
-  perspective: 1000px;
-`;
-
-const Card = styled.div`
-  width: 900px;
-  height: 500px;
-  border-radius: 10px;
-  position: relative;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  cursor: pointer;
-
-  &.flipped {
-    transform: rotateY(180deg);
-  }
-`;
-
-const CardFace = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: sans-serif;
-  font-size: 20px;
-  color: #fff;
-  background-color: #52C0F5; /* Azul para el estado inicial */
-  border-radius: 10px;
-`;
-
-const CardBack = styled(CardFace)`
-  transform: rotateY(180deg);
-  background-color: ${(props) =>
-    props.noAnswer ? "#52C0F5" : props.isCorrect ? "#4CAF50" : "#FF6B6B"}; /* Azul si no se selecciona respuesta, verde si es correcto, rojo si es incorrecto */
-`;
-
-
 const OptionsContainer = styled.div`
   margin-top: 20px;
   display: flex;
-  flex-direction: row;  /* Alinea los elementos en una fila */
-  justify-content: space-between;  /* Añade espacio entre las respuestas */
-  width: 100%;  /* Asegúrate de que el contenedor ocupe todo el ancho */
-  max-width: 900px;  /* Limita el ancho máximo para no ocupar toda la pantalla */
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 950px;
 `;
 
 const AnswerButton = styled.label`
-  background-color: #719db2;
+  background-color: #836bcf;
+  color: white;
   border-radius: 5px;
   padding: 10px 20px;
   margin: 5px;
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s;
-  width: 45%;  /* Reducimos el ancho para que quepan dos respuestas por fila */
+  width: 45%;
 
   input {
     display: none;
@@ -78,49 +40,77 @@ const AnswerButton = styled.label`
 
   &:hover {
     background-color: #f0f0f0;
+    color: black;
   }
 
   &.selected {
-    background-color: #52C0F5;
+    background-color: #52c0f5;
     color: #fff;
   }
 `;
 
-
 const NextButtonContainer = styled.div`
-  background-color: yellow;
+   background-color: #232289;
   border-radius: 5px;
+  padding: 20px 40px;
+  margin: 5px;
+  font-size: 130%;
   text-align: center;
-  margin-top:10px;
   cursor: pointer;
   transition: background-color 0.3s;
-  width: 30%;
-  
-  &:hover {
-    background-color: red;
-  }
+  width: 20%;
+  border: none;
+  color: white;
 
-  &.selected {
-    background-color: blue;
-    color: #fff;
+  &:hover {
+    background-color: #127bb1;
+    color: white;
   }
 `;
 
 const StyledButton = styled.button`
-  background-color: #719db2;
+  background-color: #232289;
   border-radius: 5px;
   padding: 20px 40px;
   margin: 5px;
+  font-size: 130%;
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s;
-  width: 98%;
+  width: 20%;
   border: none;
   color: white;
-  
+
   &:hover {
-    background-color: purple;
-    color: black;
+    background-color: #127bb1;
+    color: white;
+  }
+`;
+
+const ResultsModal = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+`;
+
+const ModalButton = styled.button`
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #232289;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #127bb1;
   }
 `;
 
@@ -129,9 +119,11 @@ class MyCarousel extends Component {
     currentCardIndex: 0,
     selectedAnswer: null,
     showAnswer: false,
-    isCorrect: null, // Nueva variable para rastrear si es correcto
-    noAnswer: false, // Nueva variable para rastrear si no se seleccionó respuesta
-    cards: exoplanetQuestions, // Preguntas importadas
+    isCorrect: null,
+    noAnswer: false,
+    cards: exoplanetQuestions,
+    results: [],
+    showResults: false
   };
 
   shuffleAnswers = (correctAnswer, incorrectAnswers) => {
@@ -146,72 +138,140 @@ class MyCarousel extends Component {
   handleAnswerSelection = (answer) => {
     const currentCard = this.state.cards[this.state.currentCardIndex];
     const isCorrect = currentCard.answer === answer;
-    this.setState({ 
-      isCorrect, 
-      showAnswer: true, 
+    this.setState((prevState) => ({
+      isCorrect,
+      showAnswer: true,
       selectedAnswer: answer,
-      noAnswer: false // Restablece el estado de no respuesta
-    });
+      noAnswer: false,
+      results: [
+        ...prevState.results,
+        { isCorrect, question: currentCard.question }
+      ]
+    }));
+  };
+
+  handleSkipQuestion = () => {
+    this.setState((prevState) => ({
+      showAnswer: true,
+      selectedAnswer: null,
+      noAnswer: false,
+      results: [
+        ...prevState.results,
+        {
+          isCorrect: null,
+          question: this.state.cards[prevState.currentCardIndex].question,
+          skipped: true
+        }
+      ]
+    }));
   };
 
   handleNext = () => {
-    if (this.state.showAnswer) {
-      // Si ya se mostró la respuesta, pasar a la siguiente pregunta
+    if (this.state.currentCardIndex === this.state.cards.length - 1) {
+      this.setState({ showResults: true });
+    } else {
       this.setState((prevState) => ({
-        currentCardIndex: (prevState.currentCardIndex + 1) % this.state.cards.length,
+        currentCardIndex: prevState.currentCardIndex + 1,
         selectedAnswer: null,
         showAnswer: false,
-        isCorrect: null, // Restablece el estado de corrección
-        noAnswer: false, // Restablece el estado de no respuesta
+        isCorrect: null,
+        noAnswer: false
       }));
-    } else {
-      // Si no se ha seleccionado una respuesta, voltea la carta y muestra la respuesta
-      if (this.state.selectedAnswer === null) {
-        this.setState({ showAnswer: true, noAnswer: true });
-      }
     }
   };
 
+  handleRestart = () => {
+    this.setState({
+      currentCardIndex: 0,
+      selectedAnswer: null,
+      showAnswer: false,
+      isCorrect: null,
+      noAnswer: false,
+      results: [],
+      showResults: false
+    });
+  };
+
   render() {
-    const { currentCardIndex, showAnswer, cards, isCorrect, noAnswer } = this.state;
+    const {
+      currentCardIndex,
+      showAnswer,
+      cards,
+      isCorrect,
+      noAnswer,
+      results,
+      showResults
+    } = this.state;
     const currentCard = cards[currentCardIndex];
-    const shuffledAnswers = this.shuffleAnswers(currentCard.answer, currentCard.incorrect_answers);
+    const shuffledAnswers = this.shuffleAnswers(
+      currentCard.answer,
+      currentCard.incorrect_answers
+    );
+    const totalQuestions = cards.length;
+    const resultsArray = results.map((result) => result.isCorrect);
+
+    const correctAnswers = results.filter((result) => result.isCorrect).length;
 
     return (
       <Container>
-        <CardContainer>
-          <Card className={showAnswer ? "flipped" : ""}>
-            <CardFace>{currentCard.question}</CardFace>
-            <CardBack isCorrect={isCorrect} noAnswer={noAnswer}>
-              {currentCard.detailed_answer}
-            </CardBack>
-          </Card>
-        </CardContainer>
+        <ProgressBar
+          totalQuestions={totalQuestions}
+          resultsArray={resultsArray}
+          results={results}
+        />
 
-        <OptionsContainer>
-          {!showAnswer && (
-            shuffledAnswers.map((answer, index) => (
-              <AnswerButton
-                key={index}
-                className={this.state.selectedAnswer === answer ? 'selected' : ''}
-              >
-                <input
-                  type="radio"
-                  value={answer}
-                  checked={this.state.selectedAnswer === answer}
-                  onChange={() => this.handleAnswerSelection(answer)}
-                />
-                {answer}
-              </AnswerButton>
-            ))
-          )}
-        </OptionsContainer>
+        {!showResults ? (
+          <>
+            <Card
+              question={currentCard.question}
+              detailedAnswer={currentCard.detailed_answer}
+              isCorrect={isCorrect}
+              noAnswer={noAnswer}
+              showAnswer={showAnswer}
+            />
 
-        <NextButtonContainer>
-          <StyledButton onClick={this.handleNext}>
-            Siguiente
-          </StyledButton>
-        </NextButtonContainer>
+            <OptionsContainer>
+              {!showAnswer &&
+                shuffledAnswers.map((answer, index) => (
+                  <AnswerButton
+                    key={index}
+                    className={
+                      this.state.selectedAnswer === answer ? "selected" : ""
+                    }
+                  >
+                    <input
+                      type="radio"
+                      value={answer}
+                      checked={this.state.selectedAnswer === answer}
+                      onChange={() => this.handleAnswerSelection(answer)}
+                    />
+                    {answer}
+                  </AnswerButton>
+                ))}
+            </OptionsContainer>
+
+            {showAnswer && (
+              <NextButtonContainer onClick={this.handleNext}>
+                Siguiente
+              </NextButtonContainer>
+            )}
+
+            {!showAnswer && (
+              <StyledButton onClick={this.handleSkipQuestion}>
+                Saltar
+              </StyledButton>
+            )}
+          </>
+        ) : (
+          <ResultsModal>
+            <h2>Resultados del Cuestionario</h2>
+            <p>
+              Respondiste correctamente {correctAnswers} de {totalQuestions}{" "}
+              preguntas.
+            </p>
+            <ModalButton onClick={this.handleRestart}>Reiniciar</ModalButton>
+          </ResultsModal>
+        )}
       </Container>
     );
   }
