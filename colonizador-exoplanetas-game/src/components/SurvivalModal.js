@@ -11,7 +11,7 @@ const SurvivalModal = ({ planetData, onClose }) => {
       const probabilidadDeSupervivencia = planetData.probabilidadDeSupervivencia;
 
       // Definir la imagen y el texto basado en la probabilidad de supervivencia
-      if (probabilidadDeSupervivencia === 'Si') {
+      if (probabilidadDeSupervivencia === 'Sí') {
         setSurvivalImage(process.env.PUBLIC_URL + '/vista_bien.jpg'); // Imagen para alta probabilidad
         setTexto("Si Existen posibilidades de supervivencia");
       } else  {

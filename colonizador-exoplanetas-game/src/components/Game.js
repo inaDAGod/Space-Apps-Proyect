@@ -138,7 +138,7 @@ const Game = () => {
         targets: this.nave,
         duration: 2000,
         onComplete: () => {
-          if (planetData.probabilidadDeSupervivencia === "Si") {
+          if (parseFloat(planetData.probSupervivencia) > 60) {
             setGasolina(prev => {
               const newGasolina = Math.min(prev + 20, 100);
               if (newGasolina <= 0) setGameState('defeat');
