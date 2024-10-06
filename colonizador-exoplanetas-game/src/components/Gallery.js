@@ -15,33 +15,29 @@ const Gallery = () => {
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     mountRef.current.appendChild(renderer.domElement);
-
+  
     // Añadir luz a la escena
     const light = new THREE.AmbientLight(0xffffff); // Luz blanca
     scene.add(light);
-
+  
     // Luz direccional para iluminar los planetas
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
     directionalLight.position.set(10, 10, 10);
     scene.add(directionalLight);
-
+  
     // Cargar las texturas para los planetas
     const textureLoader = new THREE.TextureLoader();
-
+  
     // Crear planetas con texturas
-    exoplanetas.forEach((planet, index) => {
+    exoplanetas.forEach((planet) => {
       const geometry = new THREE.SphereGeometry(2, 32, 32); // Cambia el radio de 0.5 a 2 o el tamaño que desees
       const texture = textureLoader.load(`./${planet.imagen}`); // Carga la textura de la imagen
-      texture.wrapS = THREE.RepeatWrapping;
-      texture.wrapT = THREE.RepeatWrapping;
-      texture.repeat.set( 1, 1);
-
       const material = new THREE.MeshStandardMaterial({
         map: texture, // Aplica la textura al material
       });
-
+  
       const planetMesh = new THREE.Mesh(geometry, material);
-
+  
       // Posicionamiento aleatorio de los planetas
       planetMesh.position.set(
         Math.random() * 40 - 20, // Random entre -20 y 20 en el eje X
@@ -49,17 +45,15 @@ const Gallery = () => {
         Math.random() * 40 - 20  // Random entre -20 y 20 en el eje Z
       );
       planetMesh.name = planet.nombre; // Asignar el nombre del planeta
-
-      // Guardar los datos del planeta en el objeto
-      planetMesh.userData = planet;
-
+      planetMesh.userData = planet; // Guardar los datos del planeta en el objeto
+  
       // Añadir el planeta a la escena
       scene.add(planetMesh);
     });
-
+  
     // Posicionar la cámara un poco más lejos
     camera.position.z = 50;
-
+  
     // Configurar controles de órbita
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;  // Movimiento suave
@@ -67,47 +61,48 @@ const Gallery = () => {
     controls.enableZoom = true;  // Permitir zoom con la rueda del mouse
     controls.autoRotate = true;  // Rotación automática
     controls.autoRotateSpeed = 0.5; // Velocidad de la rotación automática
-
+  
     // Aquí añadimos el raycaster y el evento de clic
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
-
+  
     const onMouseClick = (event) => {
       mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
       mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
+  
       raycaster.setFromCamera(mouse, camera);
       const intersects = raycaster.intersectObjects(scene.children);
       
       if (intersects.length > 0) {
         const selectedPlanet = intersects[0].object.userData;
-        if (selectedPlanet) {
-          setSelectedPlanet(selectedPlanet); // Guardar el planeta seleccionado
-          setClickPosition({ x: event.clientX, y: event.clientY }); // Guardar posición del clic
-        }
+        setSelectedPlanet(selectedPlanet); // Guardar el planeta seleccionado
+        setClickPosition({ x: event.clientX, y: event.clientY }); // Guardar posición del clic
       } else {
         setSelectedPlanet(null); // Ocultar la tarjeta si no se hace clic en un planeta
       }
     };
-
+  
     window.addEventListener('click', onMouseClick);
-
+  
     // Función de animación
     const animate = () => {
       requestAnimationFrame(animate);
       controls.update(); // Actualiza los controles
       renderer.render(scene, camera);
     };
-
+  
     animate();
-
+  
     // Limpiar los eventos y la escena al desmontar el componente
     return () => {
       window.removeEventListener('click', onMouseClick);
-      mountRef.current.removeChild(renderer.domElement);
+      if (mountRef.current) {
+        mountRef.current.removeChild(renderer.domElement);
+      }
       renderer.dispose();
     };
   }, []);
+  
 
   return (
     <div>
