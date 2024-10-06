@@ -45,10 +45,7 @@
     color: black;
   }
   
-  .answer-button.selected {
-    background-color: #52c0f5;
-    color: #fff;
-  }
+  
   
   .next-button-container {
     background-color: #232289;
@@ -66,10 +63,7 @@
     box-shadow: 10px 10px 20px white, -10px -10px 20px white;
   }
   
-  .next-button-container:hover {
-    background-color: #127bb1;
-    color: white;
-  }
+
   
   .styled-button {
     background-color: #232289;
@@ -116,9 +110,7 @@
     transition: background-color 0.3s;
   }
   
-  .modal-button:hover {
-    background-color: #127bb1;
-  }
+  
   
 
   .help-button {

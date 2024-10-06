@@ -102,19 +102,38 @@ class MyCarousel extends Component {
   };
 
   // Avanzar a la siguiente pregunta
-  handleNext = () => {
-    if (this.state.currentCardIndex === this.state.cards.length - 1) {
-      this.setState({ showResults: true });
+  handleNext = () => { 
+    const { currentCardIndex, cards, selectedAnswer } = this.state;
+  
+    // Verifica si estamos en la última pregunta
+    if (currentCardIndex === cards.length - 1) {
+      // Si se ha seleccionado una respuesta, muestra los resultados
+      if (selectedAnswer !== null) {
+        this.setState({ showResults: true });
+      } else {
+        // Si no hay respuesta seleccionada, muestra un mensaje o maneja eso como prefieras
+        Swal.fire({
+          title: '¡Espera!',
+          text: 'Debes seleccionar una respuesta antes de continuar.',
+          icon: 'warning',
+          confirmButtonText: 'Ok'
+        });
+      }
     } else {
-      this.setState((prevState) => ({
-        currentCardIndex: prevState.currentCardIndex + 1,
-        selectedAnswer: null,
-        showAnswer: false,
-        isCorrect: null,
-        noAnswer: false
-      }));
+      // No se está en la última pregunta, oculta la respuesta y avanza
+      this.setState({ showAnswer: false }, () => {
+        setTimeout(() => {
+          this.setState((prevState) => ({
+            currentCardIndex: prevState.currentCardIndex + 1,
+            selectedAnswer: null,
+            isCorrect: null,
+            noAnswer: false,
+          }));
+        }, 500); // Espera 500ms antes de avanzar
+      });
     }
   };
+  
 
   // Reiniciar el juego
   handleRestart = () => {
