@@ -20,7 +20,7 @@ const Home = () => {
             <audio src={'/inicio_musica.mp3'} autoPlay loop />
             <main style={{ minHeight: '633px', backgroundColor: '#0c1428' }}>
                 {/* Parallax */}
-                <Parallax pages={3} style={{ top: '0', left: '0' }} className="animation">
+                <Parallax pages={2} style={{ top: '0', left: '0' }} className="animation">
                     <ParallaxLayer offset={0} speed={0.25}>
                         <div className="animation_layer parallax" id="ESPACIO"></div>
                     </ParallaxLayer>
