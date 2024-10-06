@@ -233,18 +233,9 @@ const Game = () => {
         />
       )}
       {/* Botón de ayuda */}
-      <div style={{ position: 'absolute', bottom: 20, right: 20 }}>
-        <button onClick={openHelpModal} style={{
-          padding: '10px 20px',
-          backgroundColor: '#007bff',
-          color: 'white',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer'
-        }}>
-          Help
+       <button className="help-button" onClick={openHelpModal}>
+          ?
         </button>
-      </div>
       {/* Modal de ayuda */}
       {showHelpModal && (
         <HelpGame onClose={closeHelpModal} />
