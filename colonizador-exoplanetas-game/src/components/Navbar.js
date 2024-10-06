@@ -42,6 +42,7 @@ const Navbar = () => {
             <li><Link to="/game">Play</Link></li>
             <li><Link to="/trivia">Trivia</Link></li> {/* Añadido el enlace a Trivia */}
             <li><Link to="/gallery">Gallery</Link></li>
+            <li><Link to="/contacto">Contacto</Link></li>
           </ul>
         </div>
         <div className="navbar-toggle" onClick={toggleMenu}>

@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Im
 import Home from './components/Home'; // Importa tu componente Home
 import Game from './components/Game'; // Importa tu componente Game (asegúrate de tener este componente)
 import Gallery from './components/Gallery'; 
-import Trivia from './components/MyCarousel'; 
 import Navbar from './components/Navbar';
 import MyCarousel from './components/MyCarousel';
+import Contacto from './components/Contacto';
 const App = () => {
   return (
     <Router>
@@ -16,6 +16,7 @@ const App = () => {
         <Route path="/game" element={<Game />} /> {/* Ruta para el componente Game */}
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/trivia" element={<MyCarousel />} />
+        <Route path="/contacto" element={<Contacto/>} />
       </Routes>
     </Router>
   );
