@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import Phaser from 'phaser';
 import exoplanetas from '../data/exoplanetas';
-import PlanetInfoCard from './PlanetInfoCard'; // Importamos el nuevo componente
-import SurvivalModal from './SurvivalModal'; // Importamos el modal
+import PlanetInfoCard from './PlanetInfoCard';
+import SurvivalModal from './SurvivalModal';
+import Victory from './Victory'; // Importar componente Victory
+import Defeat from './Defeat'; // Importar componente Defeat
 
 const Game = () => {
   const [selectedPlanet, setSelectedPlanet] = useState(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [gasolina, setGasolina] = useState(80); // Gasolina inicial en 80%
-  const [currentPlanetIndex, setCurrentPlanetIndex] = useState(0); // Índice del conjunto actual de planetas
-  const planetChunkSize = 4; // Tamaño del grupo de planetas que se muestran
-  const [showModal, setShowModal] = useState(false); // Estado para mostrar el modal
+  const [gasolina, setGasolina] = useState(80);
+  const [currentPlanetIndex, setCurrentPlanetIndex] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [gameState, setGameState] = useState('playing'); // Nuevo estado para controlar el estado del juego
+  const planetChunkSize = 4;
+  let gameInstance = null;
 
   useEffect(() => {
+    if (gameState !== 'playing') return;
+
     const config = {
       type: Phaser.AUTO,
       width: window.innerWidth,
@@ -30,16 +36,16 @@ const Game = () => {
       },
     };
 
-    const game = new Phaser.Game(config);
+    gameInstance = new Phaser.Game(config);
 
     function preload() {
       this.load.image('espacio', process.env.PUBLIC_URL + '/ESPACIO.jpeg');
       this.load.image('nave', process.env.PUBLIC_URL + '/NAVE.png');
-      this.load.image('gasofa', process.env.PUBLIC_URL + '/gasofa.png'); // Cargamos la imagen de Gasofa
+      this.load.image('gasofa', process.env.PUBLIC_URL + '/gasofa.png');
       exoplanetas.forEach(planet => {
         this.load.image(planet.nombre, process.env.PUBLIC_URL + '/' + planet.imagen);
       });
-      this.load.audio('musicaFondo', process.env.PUBLIC_URL + '/fondo_musica.mp3'); // Cargamos la música de fondo
+      this.load.audio('musicaFondo', process.env.PUBLIC_URL + '/fondo_musica.mp3');
       this.load.audio('musicaViaje', process.env.PUBLIC_URL + '/ir_musica.mp3');
       this.load.audio('musicaModal', process.env.PUBLIC_URL + '/fin_musica.mp3');
     }
@@ -47,11 +53,9 @@ const Game = () => {
     function create() {
       this.add.tileSprite(0, 0, this.scale.width, this.scale.height, 'espacio').setOrigin(0, 0);
 
-      // Reproducir la música de fondo
-      const music = this.sound.add('musicaFondo', { loop: true }); // Cargamos el sonido
-      music.play(); // Iniciamos la reproducción de la música
+      const music = this.sound.add('musicaFondo', { loop: true });
+      music.play();
 
-      // Posición inicial de la nave
       const naveStartX = 100;
       const naveStartY = this.scale.height - 100;
 
@@ -61,21 +65,18 @@ const Game = () => {
       this.nave.setAngle(70);
       this.nave.setDepth(10);
 
-      this.currentPlanets = []; // Array para almacenar los planetas visibles
-      displayPlanets.call(this, currentPlanetIndex); // Mostrar los primeros planetas
+      this.currentPlanets = [];
+      displayPlanets.call(this, currentPlanetIndex);
     }
 
-
-    // Función para mostrar un grupo de planetas
     function displayPlanets(startIndex) {
-      const minPlanetDistance = 150; // Distancia mínima entre planetas
-      const minNaveDistance = 200;  // Distancia mínima respecto a la nave
-      const minSelectedPlanetDistance = 200; // Distancia mínima respecto al planeta seleccionado
+      const minPlanetDistance = 150;
+      const minNaveDistance = 200;
+      const minSelectedPlanetDistance = 200;
 
-      const planetCount = Math.min(exoplanetas.length - startIndex, planetChunkSize); // Elige el número correcto de planetas
+      const planetCount = Math.min(exoplanetas.length - startIndex, planetChunkSize);
       const planetPositions = [];
 
-      // Limpiar planetas actuales
       this.currentPlanets.forEach(planet => planet.destroy());
       this.currentPlanets = [];
 
@@ -83,7 +84,6 @@ const Game = () => {
         let randomX, randomY, isValidPosition;
         const planetData = exoplanetas[startIndex + i];
 
-        // Intentar generar una posición válida
         do {
           randomX = Phaser.Math.Between(100, this.scale.width - 100);
           randomY = Phaser.Math.Between(100, this.scale.height - 100);
@@ -92,7 +92,6 @@ const Game = () => {
             Phaser.Math.Distance.Between(randomX, randomY, pos.x, pos.y) >= minPlanetDistance
           ) && Phaser.Math.Distance.Between(randomX, randomY, 100, this.scale.height - 100) >= minNaveDistance;
 
-          // Verificar también que los planetas no estén cerca del planeta seleccionado, si existe uno
           if (selectedPlanet) {
             isValidPosition = isValidPosition && Phaser.Math.Distance.Between(randomX, randomY, position.x, position.y) >= minSelectedPlanetDistance;
           }
@@ -101,7 +100,6 @@ const Game = () => {
 
         planetPositions.push({ x: randomX, y: randomY });
 
-        // Crear planeta en una posición válida
         const planet = this.add.image(randomX, randomY, planetData.nombre).setOrigin(0.5, 0.5).setScale(0.4);
         planet.setInteractive();
 
@@ -111,10 +109,15 @@ const Game = () => {
         });
 
         planet.on('pointerdown', () => {
-          moveShipToPlanet.call(this, randomX, randomY, planetData, startIndex); // Pasamos el índice actual al mover la nave
+          moveShipToPlanet.call(this, randomX, randomY, planetData, startIndex);
         });
 
-        this.currentPlanets.push(planet); // Añadir planeta al array de planetas visibles
+        this.currentPlanets.push(planet);
+      }
+
+      // Verificar si no hay más planetas para mostrar
+      if (startIndex + planetChunkSize >= exoplanetas.length) {
+        setGameState('victory');
       }
     }
 
@@ -124,49 +127,49 @@ const Game = () => {
       this.nave.rotation = Phaser.Math.Angle.Between(this.nave.x, this.nave.y, x, y);
       this.targetX = x;
       this.targetY = y;
-      // Reproducir la música del viaje
-      const viajeMusic = this.sound.add('musicaViaje', { loop: false }); // Cargamos la música para el viaje
-      viajeMusic.play(); // Iniciamos la reproducción de la música para el viaje
-      // Agregar lógica para los recursos después de que la nave llegue al planeta
+      const viajeMusic = this.sound.add('musicaViaje', { loop: false });
+      viajeMusic.play();
+      
       this.tweens.add({
         targets: this.nave,
-        duration: 2000, // Duración de la animación
+        duration: 2000,
         onComplete: () => {
-          
-          // Actualizar los recursos al llegar al planeta
           if (parseFloat(planetData.probSupervivencia) > 60) {
-            setGasolina(prev => Math.min(prev + 20, 100)); // Aumentar la gasolina
+            setGasolina(prev => {
+              const newGasolina = Math.min(prev + 20, 100);
+              if (newGasolina <= 0) setGameState('defeat');
+              return newGasolina;
+            });
           } else {
-            setGasolina(prev => Math.max(prev - 30, 0)); // Reducir la gasolina
+            setGasolina(prev => {
+              const newGasolina = Math.max(prev - 30, 0);
+              if (newGasolina <= 0) setGameState('defeat');
+              return newGasolina;
+            });
           }
-          // Esperar 5 segundos antes de mostrar los siguientes planetas
+          
           setTimeout(() => {
-            const modalMusic = this.sound.add('musicaModal', { loop: false }); // Cargar música para el modal
-          modalMusic.play(); // Iniciar reproducción
-            // Suavizar la transición
+            const modalMusic = this.sound.add('musicaModal', { loop: false });
+            modalMusic.play();
+            
             this.tweens.add({
               targets: this.currentPlanets,
-              alpha: { from: 1, to: 0 }, // Desvanecer planetas actuales
+              alpha: { from: 1, to: 0 },
               duration: 500,
-              
               onComplete: () => {
-                 // Mostrar el modal de supervivencia
                 setShowModal(true);
-                setSelectedPlanet(planetData); // Asegurarse de que el modal tenga los datos correctos
-                setCurrentPlanetIndex(startIndex + planetChunkSize); // Actualizar índice para mostrar los siguientes 4 planetas
-                displayPlanets.call(this, startIndex + planetChunkSize); // Mostrar los siguientes planetas
-               
+                setSelectedPlanet(planetData);
+                setCurrentPlanetIndex(startIndex + planetChunkSize);
+                displayPlanets.call(this, startIndex + planetChunkSize);
+                
                 this.tweens.add({
                   targets: this.currentPlanets,
-                  alpha: { from: 0, to: 1 }, // Volver a mostrar planetas nuevos
+                  alpha: { from: 0, to: 1 },
                   duration: 500,
                 });
-               
               }
             });
-          }, 5000); // Esperar 5 segundos
-          
-          
+          }, 5000);
         }
       });
     }
@@ -183,13 +186,14 @@ const Game = () => {
     }
 
     return () => {
-      game.destroy(true);
+      if (gameInstance) {
+        gameInstance.destroy(true);
+      }
     };
-  }, [currentPlanetIndex]); // Se vuelve a ejecutar cuando cambia el índice de planetas
+  }, [currentPlanetIndex, gameState]);
 
-  // Función para renderizar las imágenes de Gasofa según el porcentaje de gasolina
   const renderGasofaImages = () => {
-    const gasofaCount = Math.floor(gasolina / 10); // Un "Gasofa" por cada 10% de gasolina
+    const gasofaCount = Math.floor(gasolina / 10);
     const gasofaImages = [];
     
     for (let i = 0; i < gasofaCount; i++) {
@@ -198,6 +202,22 @@ const Game = () => {
 
     return gasofaImages;
   };
+
+  const handleContinue = () => {
+    // Reiniciar el juego
+    setGameState('playing');
+    setGasolina(80);
+    setCurrentPlanetIndex(0);
+    // Aquí puedes añadir cualquier otra lógica de reinicio que necesites
+  };
+
+  if (gameState === 'victory') {
+    return <Victory onContinue={handleContinue} />;
+  }
+
+  if (gameState === 'defeat') {
+    return <Defeat onContinue={handleContinue} />;
+  }
 
   return (
     <div id="phaser-container">
@@ -208,11 +228,8 @@ const Game = () => {
           onClose={() => setShowModal(false)} 
         />
       )}
-      <div style={{ position: 'absolute', top: 20, left: 20, color: 'white' }}>
-        <h4>Recursos:</h4>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          {renderGasofaImages()} {/* Renderizamos las imágenes de "Gasofa" */}
-        </div>
+      <div style={{ position: 'absolute', top: 20, left: 20 }}>
+        {renderGasofaImages()}
       </div>
     </div>
   );
