@@ -16,6 +16,8 @@ const Gallery = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     mountRef.current.appendChild(renderer.domElement);
   
+
+
     // Añadir luz a la escena
     const light = new THREE.AmbientLight(0xffffff); // Luz blanca
     scene.add(light);
@@ -34,6 +36,7 @@ const Gallery = () => {
       const texture = textureLoader.load(`./${planet.imagen}`); // Carga la textura de la imagen
       const material = new THREE.MeshStandardMaterial({
         map: texture, // Aplica la textura al material
+      
       });
   
       const planetMesh = new THREE.Mesh(geometry, material);
@@ -105,7 +108,7 @@ const Gallery = () => {
   
 
   return (
-    <div>
+    <div >
       <div ref={mountRef} style={{ width: '100vw', height: '100vh' }} />
 
       {selectedPlanet && (
