@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.cbcdd2a2.css",
-    "main.js": "/static/js/main.21aac99f.js",
+    "main.js": "/static/js/main.c1b1a312.js",
     "static/js/453.ff6de008.chunk.js": "/static/js/453.ff6de008.chunk.js",
     "static/media/NEBULOSA2.png": "/static/media/NEBULOSA2.0f97ebed31ca8e1af94c.png",
     "static/media/NEBULOSA1.1.png": "/static/media/NEBULOSA1.1.9fa8ccd670ecc6c323c9.png",
@@ -10,11 +10,11 @@
     "static/media/NAVE_BIG.png": "/static/media/NAVE_BIG.e2ba34cb8a8352d83427.png",
     "index.html": "/index.html",
     "main.cbcdd2a2.css.map": "/static/css/main.cbcdd2a2.css.map",
-    "main.21aac99f.js.map": "/static/js/main.21aac99f.js.map",
+    "main.c1b1a312.js.map": "/static/js/main.c1b1a312.js.map",
     "453.ff6de008.chunk.js.map": "/static/js/453.ff6de008.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.cbcdd2a2.css",
-    "static/js/main.21aac99f.js"
+    "static/js/main.c1b1a312.js"
   ]
 }
