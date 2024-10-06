@@ -5,7 +5,7 @@ import Game from './components/Game'; // Importa tu componente Game (asegúrate 
 import Gallery from './components/Gallery'; 
 import Trivia from './components/MyCarousel'; 
 import Navbar from './components/Navbar';
-
+import MyCarousel from './components/MyCarousel';
 const App = () => {
   return (
     <Router>
@@ -15,7 +15,7 @@ const App = () => {
       <Route path="/" element={<Home />} /> {/* Ruta para el componente Home */}
         <Route path="/game" element={<Game />} /> {/* Ruta para el componente Game */}
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/trivia" element={<Trivia />} />
+        <Route path="/trivia" element={<MyCarousel />} />
       </Routes>
     </Router>
   );
