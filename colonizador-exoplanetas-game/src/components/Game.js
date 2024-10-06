@@ -209,7 +209,7 @@ const Game = () => {
         />
       )}
       <div style={{ position: 'absolute', top: 20, left: 20, color: 'white' }}>
-        <h4>Recursos:</h4>
+        <h4>.</h4>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           {renderGasofaImages()} {/* Renderizamos las imágenes de "Gasofa" */}
         </div>

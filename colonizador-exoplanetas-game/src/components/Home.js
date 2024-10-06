@@ -1,26 +1,26 @@
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import './Home.css';
 import TextBlock from './textBlock';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
-import ScrollToTop from './ScrollToTop';
 import Footer from './Footer';
 
 const Home = () => {
     const navigate = useNavigate();
 
+
     const handleButtonClick = () => {
-        navigate('/');
+        navigate('/game');
     };
 
     return (
         <div>
             {/* Navbar */}
-            <Navbar />
-            <main style={{ minHeight: '633px', backgroundColor: '#0c1428'}}>
+            <audio src={'/inicio_musica.mp3'} autoPlay loop />
+            <main style={{ minHeight: '633px', backgroundColor: '#0c1428' }}>
                 {/* Parallax */}
-                <Parallax pages={2} style={{ top: '0', left: '0' }} className="animation">
+                <Parallax pages={3} style={{ top: '0', left: '0' }} className="animation">
                     <ParallaxLayer offset={0} speed={0.25}>
                         <div className="animation_layer parallax" id="ESPACIO"></div>
                     </ParallaxLayer>
@@ -48,9 +48,6 @@ const Home = () => {
                     </ParallaxLayer>
                     <ParallaxLayer offset={1} speed={0.25}>
                         <TextBlock />
-                        <div>
-                            
-                        </div>
                         <Footer />
                     </ParallaxLayer>
                 </Parallax>

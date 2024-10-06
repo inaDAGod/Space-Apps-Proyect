@@ -1,14 +1,4 @@
 /* Contenedor principal para evitar scroll extra */
-html, body{
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-/* Parallax sin overflow */
-main {
-    overflow: hidden;
-}
 
 /* Estilo del contenedor de texto */
 #textblock {
@@ -41,14 +31,12 @@ main {
     color: #d5e2ed;
     font-size: 15px;
     font-weight: 400;
-    position: fixed;
     width: 100%;
-    bottom: 0px;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    margin-bottom: 50px;  
+    text-align: center;
+    margin-top: 50px; /* Ajusta el margen superior para separar el footer del contenido anterior */
+    padding: 20px 0; /* Espaciado adicional dentro del footer */
 }
+
   
 #textblock-devsense {
     text-decoration: none;
