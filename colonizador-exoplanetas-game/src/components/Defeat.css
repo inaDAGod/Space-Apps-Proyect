@@ -7,18 +7,27 @@
   animation: fadeIn 0.5s ease-in-out;
 }
 
-.defeat-message {
+.defeat-box {
   text-align: center;
   background-color: #8e1c1c; /* Rojo de la paleta */
   padding: 20px;
   border-radius: 10px;
   width: 60vh;
-  height: 20vh;
   box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.6);
   color: white;
 }
 
-.continue-button {
+.defeat-box h1 {
+  margin-bottom: 20px;
+}
+
+.defeat-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.defeat-button {
   margin-top: 15px;
   padding: 10px 20px;
   background-color: #127bb1;
@@ -29,7 +38,7 @@
   transition: background-color 0.3s ease;
 }
 
-.continue-button:hover {
+.defeat-button:hover {
   background-color: #0c1428;
 }
 
