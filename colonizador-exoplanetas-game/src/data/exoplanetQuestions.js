@@ -22,7 +22,7 @@ const exoplanetQuestions = [
     answer: "Es un nombre alternativo a 'zona habitable'.",
     detailed_answer: "La zona de 'Ricitos de Oro' o 'Goldilocks zone' en inglés, es un nombre alternativo para la 'Zona Habitable', proviene del cuento infantil 'Risitos de oro y los 3 osos'.",
     incorrect_answers: [
-      "Refiere a una región del sistem solar que se encuentra entre las órbitas de Marte y Júpiter.",
+      "Refiere a una región del sistema solar que se encuentra entre las órbitas de Marte y Júpiter.",
       "Es una galaxia que forma parte del sistema solar."
     ]
   },
@@ -50,7 +50,7 @@ const exoplanetQuestions = [
     detailed_answer: "Es una clase de estrellas pequeñas, relativamente frías, que emiten luz roja tenue. Son el tipo de estrella más común.",
     incorrect_answers: [
       "Es una estrella que está en las últimas etapas de su vida.",
-      "Es una estrella que solo emite radiación ultraviolet y no es visible desde la Tierra."
+      "Es una estrella que solo emite radiación ultravioleta y no es visible desde la Tierra."
     ]
   },
   {
@@ -63,7 +63,7 @@ const exoplanetQuestions = [
     ]
   },
       {
-        question: "¿Qué significa que un exoplaneta sea de tipo 'Supertierra'?",
+        question: "¿Qué significa la denominación 'Supertierra' en un exoplaneta?",
         answer: "Es un tipo de exoplaneta",
         detailed_answer: "Es uno de los tipos más comunes de exoplanetas descubiertos hasta ahora, con una masa comprendida entre la Tierra y la de Neptuno.",
         incorrect_answers: [
@@ -73,7 +73,7 @@ const exoplanetQuestions = [
       },
       {
         question: "¿Qué es la órbita?",
-        answer: "Es la trayectorua curva y repetitiva de un objeto alrededor de un cuerpo espacial",
+        answer: "Es la trayectoría curva y repetitiva de un objeto alrededor de un cuerpo espacial",
         detailed_answer: "Trayectoria curva y repetitiva de un objeto, como un satélite, una luna o un planeta, alrededor de un cuerpo espacial, como una luna, un planeta o una estrella.",
         incorrect_answers: [
           "Es el camino que sigue un planeta mientras gira sobre su propio eje.",
