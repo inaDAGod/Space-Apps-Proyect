@@ -1,27 +1,17 @@
-import React, { useState } from 'react';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import ScrollToTop from './components/ScrollToTop';
-import Victory from './components/Victory';
-import Defeat from './components/Defeat';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Importa BrowserRouter y Route
+import Home from './components/Home'; // Importa tu componente Home
+import Game from './components/Game'; // Importa tu componente Game (asegúrate de tener este componente)
 
-function App() {
-  const [status, setStatus] = useState('victory'); // Cambia entre 'victory' y 'defeat'
-
-  const handleContinue = () => {
-    // Acción al hacer clic en continuar
-    console.log('Continuar');
-  };
-
+const App = () => {
   return (
-    <div className="App">
-      <main style={{ minHeight: '100vh', backgroundColor: 'black' }}>
-        <ScrollToTop />
-        {/* Renderiza la ventana de victoria o derrota */}
-        {status === 'victory' ? <Victory onContinue={handleContinue} /> : <Defeat onContinue={handleContinue} />}
-      </main>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Game />} /> {/* Ruta para el componente Home */}
+        <Route path="/game" element={<Game />} /> {/* Ruta para el componente Game */}
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

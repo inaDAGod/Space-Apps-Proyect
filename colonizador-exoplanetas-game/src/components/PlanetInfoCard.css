@@ -1,0 +1,42 @@
+.planet-card {
+  position: absolute;
+  width: 300px;
+  /* Cambiamos el height para que se ajuste automáticamente */
+  height: auto; 
+  background-color: #f1e7d0; /* Color de fondo similar a una carta de Yu-Gi-Oh! */
+  border: 5px solid #000;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  font-family: 'Yu-Gi-Oh', sans-serif;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.planet-card-header {
+  background-color: #232289; /* Color oscuro para el nombre */
+  color:#d5e2ed;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 2px solid #000;
+  font-size: 1.2em;
+  border-radius: 10px 10px 0 0;
+}
+
+.planet-card-details {
+  padding: 10px;
+  background-color: #f9f4e9;
+  border-radius: 0 0 10px 10px;
+  font-size: 0.85em;
+}
+
+.planet-card-details p {
+  margin: 5px 0;
+}
+
+.planet-card-details strong {
+  color: #4d2800;
+  font-weight: bold;
+}
