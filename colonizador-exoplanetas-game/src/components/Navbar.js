@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import './Navbar.css';  // Asegúrate de tener este archivo para estilos personalizados.
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  // eslint-disable-next-line
   let lastScrollY = window.scrollY;
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-  };
-
-  const scrollToFooter = () => {
-    const footer = document.getElementById('footer');
-    footer.scrollIntoView({ behavior: 'smooth' });
   };
 
   useEffect(() => {
@@ -36,13 +31,12 @@ const Navbar = () => {
   return (
     <nav className={`navbar ${isVisible ? '' : 'hidden'}`}>
       <div className="navbar-container">
-        <Link to="/" className="navbar-logo">EXOplanetas</Link> {/* Cambiado a Link */}
+        <a href="#home" className="navbar-logo">EXOplanetas</a>
         <div className={`navbar-menu ${isOpen ? 'active' : ''}`}>
           <ul className="navbar-list">
-            <li><Link to="/game">Play</Link></li>
-            <li><Link to="/trivia">Trivia</Link></li> {/* Añadido el enlace a Trivia */}
-            <li><Link to="/gallery">Gallery</Link></li>
-            <li><Link to="/contacto">Contacto</Link></li>
+            <li><a href="#play">Play</a></li>
+            <li><a href="#trivia">Trivia</a></li>
+            <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
         <div className="navbar-toggle" onClick={toggleMenu}>

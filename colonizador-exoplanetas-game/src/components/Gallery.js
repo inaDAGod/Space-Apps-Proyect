@@ -123,10 +123,9 @@ const Gallery = () => {
           }}
         >
           <h2>{selectedPlanet.nombre}</h2>
-          <p>{`Periodo Orbital:: ${selectedPlanet.PeriodoOrbital}`} dias</p>
-          <p>{`Distancia Tierra: ${selectedPlanet.Distancia}`} parcecs</p>
-          <p>{`Luminosidad Estelar: ${selectedPlanet.LuminosidadEstelar}`} log(solar)</p>
-          <p>{`Numeros de estrellas: ${selectedPlanet.NumeroDeEstrellas}`}</p>
+          <p>{`Tamaño: ${selectedPlanet.masaRadio}`}</p>
+          <p>{`Distancia Tierra: ${selectedPlanet.distanciaTierra}`}</p>
+          <p>{`Consistencia: ${selectedPlanet.consistencia}`}</p>
         </div>
       )}
     </div>
