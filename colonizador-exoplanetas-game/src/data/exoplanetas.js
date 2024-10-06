@@ -13,7 +13,7 @@ const exoplanetas = [
     MovimientoPropioTotal: "539.1329986",
     Distancia: "12.5855",
     imagen: "11_Comae_Berenices b.png",
-    probabilidadDeSupervivencia: 75
+    probabilidadDeSupervivencia: "Si",
   },
   {
     nombre: "AU Mic b",
@@ -29,7 +29,7 @@ const exoplanetas = [
     MovimientoPropioTotal: "456.8630854",
     Distancia: "9.7221",
     imagen: "BD+20_594_b.png",
-    probabilidadDeSupervivencia: 65
+    probabilidadDeSupervivencia: "No"
   },
   {
     nombre: "AU Mic c",
