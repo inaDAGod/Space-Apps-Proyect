@@ -1,0 +1,60 @@
+
+
+.results-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding: 20px;
+    color: aliceblue;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(145deg, #1e1e1e, #292929);
+    border-radius: 15px;
+    box-shadow: 10px 10px 20px #1a1a1a, -10px -10px 20px #4f4f4f;
+  }
+
+.results-container {
+    background: linear-gradient(145deg, #1e1e1e, #292929);
+    border-radius: 15px;
+    box-shadow: 10px 10px 20px #1a1a1a, -10px -10px 20px #4f4f4f;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;  
+    color: white;
+    text-align: center;
+}
+
+.results-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #719db2;
+}
+
+.results-description {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.modal-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #719db2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-button:hover {
+    background-color: #e67e22;
+}
+
+/* Asegurémonos de que el modal no tenga márgenes ni padding */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Asegúrate de que el body ocupe todo el alto de la ventana */
+}

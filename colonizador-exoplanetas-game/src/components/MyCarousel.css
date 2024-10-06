@@ -27,6 +27,8 @@
     cursor: pointer;
     transition: background-color 0.3s;
     width: 45%;
+    border-radius: 15px;
+    box-shadow: 10px 10px 20px white, -10px -10px 20px white;
   }
   
   .answer-button input {
@@ -54,6 +56,8 @@
     transition: background-color 0.3s;
     width: 20%;
     color: white;
+    border-radius: 15px;
+    box-shadow: 10px 10px 20px #1a1a1a, -10px -10px 20px #4f4f4f;
   }
   
   .next-button-container:hover {

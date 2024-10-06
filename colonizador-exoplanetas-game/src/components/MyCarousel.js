@@ -4,6 +4,7 @@ import exoplanetQuestions from "../data/exoplanetQuestions";
 import Card from "./Cardtri";
 import ProgressBar from "./ProgressBar";
 import HelpTrivia from "./HelpTrivia"; // Asegúrate de importar el componente HelpTrivia
+import ResultsModal from "./ResultsModal"; // Importa el nuevo componente ResultsModal
 
 class MyCarousel extends Component {
   state = {
@@ -167,15 +168,11 @@ class MyCarousel extends Component {
             )}
           </>
         ) : (
-          <div className="results-modal">
-            <h2>Resultados del Cuestionario</h2>
-            <p>
-              Respondiste correctamente {correctAnswers} de {totalQuestions} preguntas.
-            </p>
-            <button className="modal-button" onClick={this.handleRestart}>
-              Reiniciar
-            </button>
-          </div>
+          <ResultsModal
+            correctAnswers={correctAnswers}
+            totalQuestions={totalQuestions}
+            onRestart={this.handleRestart}
+          />
         )}
 
         {/* Botón redondo para abrir ayuda */}
