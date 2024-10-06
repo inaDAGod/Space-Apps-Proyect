@@ -1,0 +1,14 @@
+.progress-bar-wrapper {
+    width: 100%;
+    background-color: lightgray;
+    height: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2%;
+    display: flex;
+  }
+  
+  .progress-filler {
+    height: 100%;
+  }
+  
