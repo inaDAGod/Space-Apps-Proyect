@@ -241,6 +241,7 @@ const Game = () => {
         <HelpGame onClose={closeHelpModal} />
       )}
       <div style={{ position: 'absolute', top: 20, left: 20 }}>
+      <h4>.</h4>
         {renderGasofaImages()}
       </div>
     </div>
