@@ -41,8 +41,6 @@ class MyCarousel extends Component {
       newRank = "Space Admiral";
     } else if (correctAnswers >= 7) {
       newRank = "Commander";
-    } else if (correctAnswers >= 3) {
-      newRank = "Cadet";
     }
 
     if (newRank !== this.state.rank) {
@@ -101,20 +99,38 @@ class MyCarousel extends Component {
     }));
   };
 
-  // Avanzar a la siguiente pregunta
-  handleNext = () => {
-    if (this.state.currentCardIndex === this.state.cards.length - 1) {
+// Avanzar a la siguiente pregunta
+// Avanzar a la siguiente pregunta
+// Avanzar a la siguiente pregunta
+handleNext = () => {
+  // Verifica si estamos en la última pregunta
+  if (this.state.currentCardIndex === this.state.cards.length - 1) {
+    // Asegúrate de que la respuesta de la última pregunta también se procese
+    if (this.state.selectedAnswer !== null) {
+      // Mostrar los resultados después de que se haya procesado la respuesta de la última pregunta
       this.setState({ showResults: true });
-    } else {
-      this.setState((prevState) => ({
-        currentCardIndex: prevState.currentCardIndex + 1,
-        selectedAnswer: null,
-        showAnswer: false,
-        isCorrect: null,
-        noAnswer: false
-      }));
     }
-  };
+  } else {
+    // Asegúrate de voltear primero la tarjeta antes de avanzar
+    this.setState({ showAnswer: false }, () => {
+      // Usa setTimeout para retrasar el avance a la siguiente pregunta
+      setTimeout(() => {
+        this.setState((prevState) => ({
+          currentCardIndex: prevState.currentCardIndex + 1, // Avanza a la siguiente tarjeta
+          selectedAnswer: null, // Reinicia la selección de respuesta
+          isCorrect: null, // Reinicia el estado de si es correcta o no
+          noAnswer: false, // Reinicia la advertencia de no respuesta
+        }));
+      }, 500); // Espera 500ms antes de avanzar, para permitir que la tarjeta se voltee
+    });
+  }
+};
+
+
+
+
+  // Avanzar a la siguiente pregunta
+
 
   // Reiniciar el juego
   handleRestart = () => {
