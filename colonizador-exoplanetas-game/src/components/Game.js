@@ -5,7 +5,7 @@ import PlanetInfoCard from './PlanetInfoCard';
 import SurvivalModal from './SurvivalModal';
 import Victory from './Victory'; // Importar componente Victory
 import Defeat from './Defeat'; // Importar componente Defeat
-
+import HelpGame from './HelpGame';
 const Game = () => {
   const [selectedPlanet, setSelectedPlanet] = useState(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -13,9 +13,13 @@ const Game = () => {
   const [currentPlanetIndex, setCurrentPlanetIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [gameState, setGameState] = useState('playing'); // Nuevo estado para controlar el estado del juego
+  const [showHelpModal, setShowHelpModal] = useState(false); // Estado para el modal de ayuda
   const planetChunkSize = 4;
   let gameInstance = null;
 
+    // Funciones para abrir y cerrar el modal de ayuda
+    const openHelpModal = () => setShowHelpModal(true);
+    const closeHelpModal = () => setShowHelpModal(false);
   useEffect(() => {
     if (gameState !== 'playing') return;
 
@@ -228,11 +232,16 @@ const Game = () => {
           onClose={() => setShowModal(false)} 
         />
       )}
-      <div style={{ position: 'absolute', top: 20, left: 20, color: 'white' }}>
-        <h4>.</h4>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          {renderGasofaImages()} {/* Renderizamos las imágenes de "Gasofa" */}
-        </div>
+      {/* Botón de ayuda */}
+       <button className="help-button" onClick={openHelpModal}>
+          ?
+        </button>
+      {/* Modal de ayuda */}
+      {showHelpModal && (
+        <HelpGame onClose={closeHelpModal} />
+      )}
+      <div style={{ position: 'absolute', top: 20, left: 20 }}>
+        {renderGasofaImages()}
       </div>
     </div>
   );
