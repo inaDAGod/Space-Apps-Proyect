@@ -162,14 +162,6 @@ const exoplanetQuestions = [
       ]
   }
   ];
-  
-  
-  
-
-
-
-
-
 
   export default exoplanetQuestions;
   
