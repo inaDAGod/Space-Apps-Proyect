@@ -45,23 +45,23 @@ const exoplanetas = [
     MovimientoPropioTotal: "456.8630854",
     Distancia: "9.7221",
     imagen: "GJ 86 b.png",
-    probabilidadDeSupervivencia: 60
+    probabilidadDeSupervivencia: "No"
   },
   {
-    nombre: "BD-14 3065 b",
-    NumeroDeEstrellas: "3",
+    nombre: "K2-18 b",
+    NumeroDeEstrellas: "1",
     NumeroDeLunas: "0",
-    PeriodoOrbital: "4.2889731",
-    RadioDelPlaneta: "21.59",
-    DensidadDelPlaneta: "2.15",
-    FlujoDeInsolacion: "646.76",
-    TermperaturaDeEquilibrio: "2001.0",
-    MasaEstelar: "1.41",
-    LuminosidadEstelar: "1.06",
+    PeriodoOrbital: "32.939623",
+    RadioDelPlaneta: "2.370",
+    DensidadDelPlaneta: "4.11",
+    FlujoDeInsolacion: "1.01461",
+    TermperaturaDeEquilibrio: "284.0",
+    MasaEstelar: "0.36",
+    LuminosidadEstelar: "-1.597",
     MovimientoPropioTotal: "9.0305658",
-    Distancia: "589.423",
+    Distancia: "38.026600",
     imagen: "GJ 504b.png",
-    probabilidadDeSupervivencia: 50
+    probabilidadDeSupervivencia: "Si"
   },
   {
     nombre: "CD Cet b",
@@ -77,7 +77,7 @@ const exoplanetas = [
     MovimientoPropioTotal: "1743.982574",
     Distancia: "8.60715",
     imagen: "GJ_3929_b.png",
-    probabilidadDeSupervivencia: 55
+    probabilidadDeSupervivencia: "No"
   },
   {
     nombre: "CoRoT-1 b",
@@ -93,23 +93,23 @@ const exoplanetas = [
     MovimientoPropioTotal: "6.039454",
     Distancia: "787.909",
     imagen: "GJ_3929_c.png",
-    probabilidadDeSupervivencia: 45
+    probabilidadDeSupervivencia: "No"
   },
   {
-    nombre: "CoRoT-11 b",
+    nombre: "Kepler-1229 b",
     NumeroDeEstrellas: "1",
     NumeroDeLunas: "0",
-    PeriodoOrbital: "2.99433",
-    RadioDelPlaneta: "16.03",
-    DensidadDelPlaneta: "0.99",
-    FlujoDeInsolacion: "1890.65",
-    TermperaturaDeEquilibrio: "1657.0",
-    MasaEstelar: "1.27",
-    LuminosidadEstelar: "0.378",
-    MovimientoPropioTotal: "5.5818875",
-    Distancia: "655.037",
+    PeriodoOrbital: "86.82988",
+    RadioDelPlaneta: "1.400",
+    DensidadDelPlaneta: "5.09",
+    FlujoDeInsolacion: "0.52",
+    TermperaturaDeEquilibrio: "212",
+    MasaEstelar: "0.54",
+    LuminosidadEstelar: "-1.533",
+    MovimientoPropioTotal: "22.030265",
+    Distancia: "265.482",
     imagen: "HATS-74 A b.png",
-    probabilidadDeSupervivencia: 40
+    probabilidadDeSupervivencia: "Si"
   },
   {
     nombre: "CoRoT-12 b",
@@ -125,7 +125,7 @@ const exoplanetas = [
     MovimientoPropioTotal: "3.8659215",
     Distancia: "1126.37",
     imagen: "HD 56414 b.png",
-    probabilidadDeSupervivencia: 65
+    probabilidadDeSupervivencia: "No"
   },
   {
     nombre: "CoRoT-13 b",
@@ -141,7 +141,7 @@ const exoplanetas = [
     MovimientoPropioTotal: "3.6450532",
     Distancia: "1148.93",
     imagen: "HD 220074_b.png",
-    probabilidadDeSupervivencia: 70
+    probabilidadDeSupervivencia: "Si"
   },
   {
     nombre: "CoRoT-18 b",
@@ -157,7 +157,7 @@ const exoplanetas = [
     MovimientoPropioTotal: "4.0100233",
     Distancia: "764.889",
     imagen: "HD_11977_b.png",
-    probabilidadDeSupervivencia: 60
+    probabilidadDeSupervivencia: "No"
   },
   {
     nombre: "CoRoT-19 b",
@@ -173,23 +173,23 @@ const exoplanetas = [
     MovimientoPropioTotal: "7.6938008",
     Distancia: "790.663",
     imagen: "HD_69830_b.png",
-    probabilidadDeSupervivencia: 55
+    probabilidadDeSupervivencia: "No"
   },
   {
-    nombre: "CoRoT-2 b",
-    NumeroDeEstrellas: "2",
+    nombre: "Wolf 1069 b",
+    NumeroDeEstrellas: "1",
     NumeroDeLunas: "0",
-    PeriodoOrbital: "1.7429935",
-    RadioDelPlaneta: "16.432",
-    DensidadDelPlaneta: "1.47",
-    FlujoDeInsolacion: "932.91",
-    TermperaturaDeEquilibrio: "1521.0",
-    MasaEstelar: "0.96",
-    LuminosidadEstelar: "-0.131",
-    MovimientoPropioTotal: "11.4550454",
-    Distancia: "213.283",
+    PeriodoOrbital: "15.564",
+    RadioDelPlaneta: "1.80",
+    DensidadDelPlaneta: "5.50",
+    FlujoDeInsolacion: "0.655703",
+    TermperaturaDeEquilibrio: "250",
+    MasaEstelar: "0.17",
+    LuminosidadEstelar: "-2.537",
+    MovimientoPropioTotal: "602.44956",
+    Distancia: "9.58",
     imagen: "HD_73583_b.png",
-    probabilidadDeSupervivencia: 72
+    probabilidadDeSupervivencia: "Si"
   },
   {
     nombre: "CoRoT-20 b",
@@ -205,7 +205,7 @@ const exoplanetas = [
     MovimientoPropioTotal: "2.8157236",
     Distancia: "844.061",
     imagen: "HD_73583_c.png",
-    probabilidadDeSupervivencia: 50
+    probabilidadDeSupervivencia: "No"
   },
   {
     nombre: "CoRoT-4 b",
@@ -221,7 +221,7 @@ const exoplanetas = [
     MovimientoPropioTotal: "5.3458377",
     Distancia: "726.412",
     imagen: "HR 8799b.png",
-    probabilidadDeSupervivencia: 62
+    probabilidadDeSupervivencia: "No"
   },
   {
     nombre: "CoRoT-5 b",
@@ -237,7 +237,7 @@ const exoplanetas = [
     MovimientoPropioTotal: "8.8293871",
     Distancia: "882.472",
     imagen: "url_a_la_imagen_de_CoRoT-5b",
-    probabilidadDeSupervivencia: 58
+    probabilidadDeSupervivencia: "Si"
   },
   {
     nombre: "CoRoTID 223977153 b",
@@ -253,7 +253,7 @@ const exoplanetas = [
     MovimientoPropioTotal: "4.6600247",
     Distancia: "576.683",
     imagen: "k2-53_b.png",
-    probabilidadDeSupervivencia: 66
+    probabilidadDeSupervivencia: "No"
   },
   {
     nombre: "EPIC 211822797 b",
@@ -269,23 +269,23 @@ const exoplanetas = [
     MovimientoPropioTotal: "37.9241885",
     Distancia: "186.197",
     imagen: "K2-141_b.png",
-    probabilidadDeSupervivencia: 75
+    probabilidadDeSupervivencia: "No"
   },
   {
-    nombre: "EPIC 211945201 b",
+    nombre: "LHS 1140 b",
     NumeroDeEstrellas: "1",
     NumeroDeLunas: "0",
-    PeriodoOrbital: "19.49221",
-    RadioDelPlaneta: "5.76",
-    DensidadDelPlaneta: "0.65",
-    FlujoDeInsolacion: "31.91",
-    TermperaturaDeEquilibrio: "817.0",
-    MasaEstelar: "1.17",
-    LuminosidadEstelar: "0.373",
-    MovimientoPropioTotal: "61.7731533",
-    Distancia: "181.69",
+    PeriodoOrbital: "24.73723",
+    RadioDelPlaneta: "1.73",
+    DensidadDelPlaneta: "5.9",
+    FlujoDeInsolacion: "0.43",
+    TermperaturaDeEquilibrio: "226.0",
+    MasaEstelar: "0.18",
+    LuminosidadEstelar: "-2.42",
+    MovimientoPropioTotal: "675.87874423",
+    Distancia: "14.9861",
     imagen: "K2-141_c.png",
-    probabilidadDeSupervivencia: 68
+    probabilidadDeSupervivencia: "Si"
   },
   {
     nombre: "EPIC 220674823 b",
@@ -301,7 +301,7 @@ const exoplanetas = [
     MovimientoPropioTotal: "61.004017",
     Distancia: "244.59",
     imagen: "kepler-68_b.png",
-    probabilidadDeSupervivencia: 40
+    probabilidadDeSupervivencia: "No"
   },
   {
     nombre: "EPIC 220674823 c",
@@ -317,7 +317,7 @@ const exoplanetas = [
     MovimientoPropioTotal: "61.004017",
     Distancia: "244.59",
     imagen: "Kepler-102_b.png",
-    probabilidadDeSupervivencia: 42
+    probabilidadDeSupervivencia: "No"
   },
   {
     nombre: "EPIC 229004835 b",
@@ -333,7 +333,7 @@ const exoplanetas = [
     MovimientoPropioTotal: "133.5434698",
     Distancia: "121.971",
     imagen: "Kepler-1029_b.png",
-    probabilidadDeSupervivencia: 67
+    probabilidadDeSupervivencia: "No"
   },
   {
     nombre: "EPIC 246851721 b",
@@ -349,7 +349,7 @@ const exoplanetas = [
     MovimientoPropioTotal: "13.2641483",
     Distancia: "372.632",
     imagen: "Kepler-1049_b.png",
-    probabilidadDeSupervivencia: 61
+    probabilidadDeSupervivencia: "No"
   },
   {
     nombre: "EPIC 249893012 b",
@@ -365,7 +365,7 @@ const exoplanetas = [
     MovimientoPropioTotal: "36.8679057",
     Distancia: "321.296",
     imagen: "kepler-1136B.png",
-    probabilidadDeSupervivencia: 69
+    probabilidadDeSupervivencia: "No"
   },
   {
     nombre: "GJ 1002 b",
@@ -381,7 +381,7 @@ const exoplanetas = [
     MovimientoPropioTotal: "2059.5072713",
     Distancia: "4.84867",
     imagen: "BD+20_594_b.png",
-    probabilidadDeSupervivencia: 65
+    probabilidadDeSupervivencia: "Si"
   }
 ];
 
