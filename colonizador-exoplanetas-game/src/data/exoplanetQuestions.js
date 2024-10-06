@@ -2,145 +2,147 @@ const exoplanetQuestions = [
   {
     question: "¿Qué es un exoplaneta?",
     answer: "Un planeta que orbita una estrella fuera de nuestro sistema solar.",
-    detailed_answer: "Un exoplaneta es un planeta que orbita una estrella fuera de nuestro sistema solar. Estos planetas son importantes para la búsqueda de vida fuera de la Tierra.",
+    detailed_answer: "Un exoplaneta es un planeta que orbita una estrella fuera de nuestro sistema solar; también son llamados 'planeta extrasolar' .",
     incorrect_answers: [
       "Un planeta que orbita alrededor de otro planeta, como una luna.",
       "Una estrella cercana a la Tierra que no orbita ningún planeta.                    "
     ]
   },
   {
-    question: "¿Qué factores determinan si un exoplaneta es habitable?",
-    answer: "La distancia a su estrella, agua, atmósfera y temperatura.",
-    detailed_answer: "Los factores que determinan la habitabilidad de un exoplaneta incluyen la distancia a su estrella, que debe permitir condiciones para agua líquida; la presencia de agua, que es esencial para la vida; una atmósfera adecuada que pueda retener calor y proteger contra la radiación; y temperaturas que no sean extremas.",
+    question: "¿A qué se refiere con 'zona habitable'?",
+    answer: "Rango de distancia orbital que permitiría la existencia de agua líquida en la superficie.",
+    detailed_answer: "Es el rango de distancia orbital a una estrella a la que las temperaturas permitirían la existencia de agua líquida en la superficie de un planeta con atmósfera suficiente.",
     incorrect_answers: [
-      "La composición química del núcleo del planeta.",
-      "La cantidad de lunas que tiene."
+      "El rango de exoplanetas donde hay vida.",
+      "Un rango de distancia orbital fijo, sin depender del tamaño ni la temperatura de la estrella."
     ]
   },
   {
-    question: "¿Por qué es importante el agua líquida para la habitabilidad?",
-    answer: "Porque es un solvente que permite procesos biológicos.",
-    detailed_answer: "El agua líquida es fundamental para la vida, ya que actúa como un solvente que facilita reacciones químicas en organismos. Sin agua líquida, los procesos biológicos no podrían ocurrir.",
+    question: "¿A qué refiere la zona de 'Ricitos de Oro'?",
+    answer: "Es un nombre alternativo a 'zona habitable'.",
+    detailed_answer: "La zona de 'Ricitos de Oro' o 'Goldilocks zone' en inglés, es un nombre alternativo para la 'Zona Habitable', proviene del cuento infantil 'Risitos de oro y los 3 osos'.",
     incorrect_answers: [
-      "Porque es un recurso que ayuda a regular la temperatura del planeta.",
-      "Porque es un solvente que permite proporcionar una atmosfera adecuada."
+      "Refiere a una región del sistema solar que se encuentra entre las órbitas de Marte y Júpiter.",
+      "Es una galaxia que forma parte del sistema solar."
     ]
   },
   {
-    question: "¿Cómo influye el tamaño de un exoplaneta en su habitabilidad?",
-    answer: "El tamaño determina su capacidad para mantener una atmósfera adecuada y estable.",
-    detailed_answer: "El tamaño de un exoplaneta afecta su gravedad y, por ende, su capacidad para retener una atmósfera. Un exoplaneta pequeño puede no mantener una atmósfera adecuada, mientras que uno muy grande puede tener condiciones extremas que no permitan la vida.",
+    question: "¿Qué es un año luz?",
+    answer: "La distancia que recorre la luz en un año.",
+    detailed_answer: "Es la distancia que recorre la luz en un año y equivale a unos 9,5 billones de kilómetros",
     incorrect_answers: [
-      "Un planeta más grande siempre tiene más agua.",
-      "Los planetas pequeños son siempre más fríos."
+      "La distancia que recorre un planeta alrededor de su estrella en un año.",
+      "El tiempo que tarda un rayo de luz en llegar desde el Sol hasta la Tierra.",
     ]
   },
   {
-    question: "¿Qué papel juega la atmósfera en la habitabilidad de un exoplaneta?",
-    answer: "La atmósfera regula temperatura y contentiene gases necesarios.",
-    detailed_answer: "La atmósfera es crucial para la habitabilidad, ya que regula la temperatura a través del efecto invernadero, protege a la superficie de la radiación cósmica y contiene elementos esenciales para la vida.",
+    question: "¿Qué significa que un planeta esté bloqueado marealmente?",
+    answer: "Es cuando un cuerpo celeste siempre tiene un lado orientado hacia el cuerpo que orbita.",
+    detailed_answer: "Es cuando un cuerpo celeste, como planeta o luna, tiene siempre un lado orientado hacia el cuerpo que orbita, como una estrella o un planeta; tiene un lado diurno y uno nocturno.",
     incorrect_answers: [
-      "La atmósfera no tiene influencia sobre la temperatura.",
-      "Los planetas sin atmósfera son los más habitables."
+      "Significa que el cuerpo celeste está atrapado por fuerzas gravitacionales y no puede moverse.",
+      "Es cuando un planeta tiene una atmósfera bloqueada, impidiendo el intercambio de aire entre los hemisferios."
     ]
   },
   {
-    question: "¿Qué es un planeta 'rocoso'?",
-    answer: "Un planeta con superficie sólida que puede albergar condiciones para la vida.",
-    detailed_answer: "Un planeta rocoso tiene una superficie sólida, en contraste con los gigantes gaseosos. Estos planetas suelen tener condiciones que podrían permitir la existencia de vida.",
+    question: "¿Qué es una estrella enana roja?",
+    answer: "Es una clase de estrella pequeña, que emite una luz roja tenue.",
+    detailed_answer: "Es una clase de estrellas pequeñas, relativamente frías, que emiten luz roja tenue. Son el tipo de estrella más común.",
     incorrect_answers: [
-      "Un planeta que cuenta con una superficie sólida y lleno de helio.",
-      "Un planeta que nunca orbita una estrella."
+      "Es una estrella que está en las últimas etapas de su vida.",
+      "Es una estrella que solo emite radiación ultravioleta y no es visible desde la Tierra."
     ]
   },
   {
-    question: "¿Qué es la 'biosfera' en un planeta?",
-    answer: "Es la región donde se encuentra la vida, incluyendo la superficie y la atmósfera.",
-    detailed_answer: "La biosfera comprende todas las zonas de un planeta donde se encuentra vida, incluyendo su superficie, océanos y atmósfera. Es un sistema complejo que interactúa con otros sistemas planetarios.",
+    question: "¿Qué significa UA?",
+    answer: "Es una unidad astronómica, que representa la distancia entre la Tierra y el Sol.",
+    detailed_answer: "Es una unidad astronómica, que representa la distancia entre la Tierra y el Sol, y representa unos 150 millones de [km].",
     incorrect_answers: [
-      "La biosfera es solo los elementos vivos de la tierra.",
-      "La biosfera se refiere al núcleo del planeta."
+      "Es una unidad de tiempo usada para medir la duración de las órbitas planetarias.",
+      "Es una medida de la fuerza gravitatoria entre dos cuerpos celestes."
     ]
   },
       {
-        question: "¿Qué técnicas se utilizan para detectar exoplanetas?",
-        answer: "El método de tránsito y la velocidad radial.",
-        detailed_answer: "Las técnicas más utilizadas para detectar exoplanetas son el método de tránsito, que observa la disminución del brillo de una estrella cuando un planeta pasa frente a ella, y el método de velocidad radial, que mide los cambios en la luz de la estrella debido a la gravedad del planeta.",
+        question: "¿Qué significa la denominación 'Supertierra' en un exoplaneta?",
+        answer: "Es un tipo de exoplaneta",
+        detailed_answer: "Es uno de los tipos más comunes de exoplanetas descubiertos hasta ahora, con una masa comprendida entre la Tierra y la de Neptuno.",
         incorrect_answers: [
-          "La observación directa de la superficie del planeta.",
-          "El análisis de las ondas sonoras del planeta."
+          "Es un planeta que tiene un tamaño igual o mayor que el de Júpiter.",
+          "Es un planeta gaseoso similar a Saturno, pero más cercano a su estrella."
         ]
       },
       {
-        question: "¿Cuántos exoplanetas se han descubierto hasta ahora?",
-        answer: "Miles de exoplanetas han sido confirmados hasta la fecha.",
-        detailed_answer: "Desde que se confirmaron los primeros exoplanetas en 1992, miles han sido descubiertos, gracias a misiones como Kepler y TESS. A medida que avanza la tecnología, este número sigue aumentando.",
+        question: "¿Qué es la órbita?",
+        answer: "Es la trayectoría curva y repetitiva de un objeto alrededor de un cuerpo espacial",
+        detailed_answer: "Trayectoria curva y repetitiva de un objeto, como un satélite, una luna o un planeta, alrededor de un cuerpo espacial, como una luna, un planeta o una estrella.",
         incorrect_answers: [
-          "Se cuenta con cien exoplanetas confirmados y descubiertos.",
-          "Más de un millón."
+          "Es el camino que sigue un planeta mientras gira sobre su propio eje.",
+          "Es la distancia fija entre un planeta y su estrella."
         ]
       },
+//10
+{
+  question: "¿Toda las estrellas tienen un exoplaneta?",
+  answer: "No todas las estrellas tienen un exoplaneta",
+  detailed_answer: "Según los astrónomos, es probable que más del 50 % de las estrellas alberguen al menos un planeta.",
+  incorrect_answers: [
+    "Si toda las estrellas tienen almenos un exoplaneta",
+    "Ninguna estrella tiene exoplaneta"
+  ]
+},
+{
+  question: "¿Cuáles son tipos de exoplanetas?",
+  answer: "Mundos rocosos, mundos oceánicos, Mini-Neptunos, Super-Tierras y Júpiter calientes",
+  detailed_answer: "Los exoplanetas incluyen Hot Jupiters (gigantes gaseosos cerca de su estrella), Mini-Neptunes y Super-Earths (planetas rocosos grandes o gaseosos pequeños), ocean worlds (núcleo rocoso cubierto de océano) y rocky worlds (planetas sólidos similares a la Tierra).",
+  incorrect_answers: [
+      "Mundos safari, planetas de chocolate, mundos oceánicos",
+      "Planetas que giran alrededor de agujeros negros, mundos de cristal líquido y Júpiter calientes"
+  ]
+},
+{
+  question: "¿Las estrellas aparte de nuestro sol pueden tener planetas?",
+  answer: "Sí, muchas estrellas además de nuestro sol tienen planetas.",
+  detailed_answer: "En las últimas décadas, los astrónomos han descubierto miles de exoplanetas que orbitan estrellas distintas al sol, ampliando nuestro conocimiento sobre la diversidad de sistemas planetarios en el universo.",
+  incorrect_answers: [
+      "No, ninguna estrella fuera de nuestro sol tiene planetas.",
+      "No se ha encontrado evidencia de planetas en otras estrellas."
+  ]
+},
+{
+  question: "¿De qué trata la misión Mars Express?",
+  answer: "La misión se centra en determinar si puede haber condiciones que soporten vida en Marte.",
+  detailed_answer: "La misión Mars Express tiene como objetivo responder preguntas fundamentales sobre la geología, la atmósfera, el entorno de la superficie, la historia del agua y el potencial de vida en Marte. Utiliza una variedad de instrumentos para estudiar la composición del planeta y su evolución.",
+  incorrect_answers: [
+    "La misión se centra en investigar la composición del núcleo de la Marte.",
+    "La misión se dedica a explorar las lunas de Marte."
+  ]
+},
+//13 hasta la de arriba
       {
-        question: "¿Qué es la 'zona habitable' de una estrella?",
-        answer: "Es el rango de distancias donde un exoplaneta podría tener agua líquida.",
-        detailed_answer: "La 'zona habitable' es el rango de distancias alrededor de una estrella donde las condiciones permiten que el agua líquida exista en la superficie de un exoplaneta. Este concepto es crucial en la búsqueda de vida.",
-        incorrect_answers: [
-          "Es la región donde la gravedad de la estrella es más fuerte.",
-          "Es el área donde solo se pueden encontrar planetas gaseosos."
-        ]
-      },
-      {
-        question: "¿Qué es un exoplaneta 'supertierra'?",
-        answer: "Es un tipo de exoplaneta más grande que la Tierra pero más pequeño que Neptuno.",
-        detailed_answer: "Las 'supertierras' son exoplanetas que tienen un tamaño mayor que el de la Tierra pero menor que el de Neptuno. Estos planetas pueden tener condiciones variadas y se consideran interesantes en la búsqueda de vida.",
-        incorrect_answers: [
-          "Un exoplaneta que es más pequeño que la Tierra y más grande que Saturno.",
-          "Un planeta que siempre está en una órbita muy cercana a su estrella."
-        ]
-      },
-      {
-        question: "¿Por qué es importante estudiar la atmósfera de los exoplanetas?",
-        answer: "La atmósfera puede revelar la posibilidad de vida y la composición química del planeta.",
-        detailed_answer: "Estudiar la atmósfera de los exoplanetas es fundamental porque puede proporcionar información sobre su potencial para albergar vida. Gases como el oxígeno y el metano son indicadores importantes en este análisis.",
-        incorrect_answers: [
-          "La atmósfera no tiene relación con la habitabilidad.",
-          "Solo se analiza la superficie del planeta y no la atmósfera."
-        ]
-      },
-      {
-        question: "¿Qué son los 'exoplanetas vagabundos'?",
-        answer: "Son planetas que no orbitan ninguna estrella y flotan libremente en el espacio.",
-        detailed_answer: "Los 'exoplanetas vagabundos' son aquellos que han sido expulsados de su sistema planetario y no orbitan ninguna estrella. Estos planetas son intrigantes porque podrían tener condiciones muy diferentes a los planetas que orbitan estrellas.",
-        incorrect_answers: [
-          "Son planetas que orbitan estrellas muy lejanas.",
-          "Son planetas que no han sido observados y orbitan muy lejos de su estrella."
-        ]
-      },
-      {
-        question: "¿Qué es la 'método de microlente gravitacional'?",
-        answer: "Es una técnica que utiliza la gravedad de una estrella para detectar exoplanetas.",
+        question: "¿Con qué método se encontraron más exoplanetas?",
+        answer: "El método de tránsito, también conocido como 'búsqueda de sombras'.",
         detailed_answer: "La 'método de microlente gravitacional' implica el uso de la gravedad de una estrella para amplificar la luz de un objeto distante. Esto puede revelar la presencia de un exoplaneta al observar los cambios en la luminosidad.",
         incorrect_answers: [
-          "Es una técnica que solo se utiliza para observar estrellas y no planetas.",
-          "Es un método basado en la medición de ondas sonoras."
+          "El método de velocidad radial, también conocido como 'efecto Doppler'.",
+          "El método de microlente gravitacional."
         ]
       },
       {
-        question: "¿Qué es un 'exoplaneta errante'?",
-        answer: "Es un planeta que no orbita ninguna estrella.",
-        detailed_answer: "Un 'exoplaneta errante' es un planeta que ha sido expulsado de su sistema estelar o nunca ha estado ligado gravitacionalmente a una estrella. Flotan libremente por el espacio sin una estrella anfitriona.",
+        question: "¿Qué es una enana ultrafría?",
+        answer: "Son objetos similares a estrellas de masa extremadamente baja.",
+        detailed_answer: "Son objetos similares a estrellas con temperaturas efectivas inferiores a 2700 Kelvin, se incluyen estrellas de masa extremadamente baja.",
         incorrect_answers: [
-            "Es un planeta que orbita alrededor de varias estrellas.",
-            "Es un planeta que cambia de órbita constantemente."
+            "Son objetos que son los suficientemente masivos como para arder como una estrella.",
+            "Es un término que no es utilizado para distinguir estrellas como el Sol."
         ]
     },
     {
-      question: "¿Qué es el 'método de velocidad radial' para detectar exoplanetas?",
-      answer: "Es un método que mide el efecto gravitacional del planeta sobre su estrella.",
-      detailed_answer: "El 'método de velocidad radial' detecta exoplanetas midiendo los pequeños cambios en el movimiento de una estrella causados por la atracción gravitacional de un planeta. Esto genera una variación en la velocidad de la estrella que puede ser observada mediante el efecto Doppler.",
+      question: "¿Cuál es el nombre del exoplaneta más cercano a la Tierra?",
+      answer: "El más próximo a la Tierra es Próxima Centauri b.",
+      detailed_answer: "Próxima Centauri b se encuentra a unos 4 años luz de la Tierra lo que lo hace el exoplaneta más próximo a la Tierra",
       incorrect_answers: [
-          "Es un método que observa cómo la luz del planeta afecta a su estrella.",
-          "Es un método que mide la velocidad del viento estelar."
+          "El exoplaneta más próximo es HD 56414 b.",
+          "El exoplaneta más próximo es Kepler 68 b."
       ]
   },
   {
@@ -160,15 +162,25 @@ const exoplanetQuestions = [
         "Es una estrella pequeña que está a punto de apagarse.",
         "Es un planeta que ha sido expulsado de su sistema estelar."
     ]
+},
+{
+  question: "¿A qué refiere la misión TESS?",
+  answer: "TESS es el 'Transiting Exoplanet Survey Satellite', lanzado en 2018 para descubrir planetas.",
+  detailed_answer: "TESS es el 'Transiting Exoplanet Survey Satellite', lanzado en 2018 para descubrir planetas pequeños que orbitan estrellas brillantes en todo el cielo nocturno, utilizando el método de tránsito para identificar exoplanetas.",
+  incorrect_answers: [
+      "Es un telescopio diseñado exclusivamente para estudiar la formación de estrellas y galaxias lejanas.",
+      "TESS utiliza el método de microlente gravitacional para detectar exoplanetas en sistemas estelares cercanos."
+  ]
+},
+{
+  question: "¿Qué es la espectroscopía?",
+  answer: "Es un método de análisis de la luz mediante su separación en distintas longitudes de onda.",
+  detailed_answer: "Es un método de análisis de la luz mediante su separación en distintas longitudes de onda, que permite identificar los componentes químicos de un objeto astronómico por sus firmas de longitud de onda únicas.",
+  incorrect_answers: [
+      "Es un método que mide las ondas de radio emitidas por los planetas para calcular su masa y temperatura.",
+      "Es una técnica que utiliza lentes ópticas para ampliar las imágenes de objetos lejanos y analizar su movimiento."
+  ]
 }
 ];
-
-
-
-
-
-
-
-
 
 export default exoplanetQuestions;
