@@ -103,7 +103,13 @@ class MyCarousel extends Component {
     const correctAnswers = results.filter((result) => result.isCorrect).length;
 
     return (
-      <div className="container">
+      <div className="container"
+        style={{
+          backgroundImage: `url('/ESPACIO.jpeg')`, // Establece aquí la imagen de fondo
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+        >
         <ProgressBar
           totalQuestions={totalQuestions}
           resultsArray={resultsArray}
