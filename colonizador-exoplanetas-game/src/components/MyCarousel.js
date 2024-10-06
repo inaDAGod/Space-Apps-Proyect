@@ -160,7 +160,7 @@ class MyCarousel extends Component {
     const resultsArray = results.map((result) => result.isCorrect);
 
     return (
-      <div className="container"
+      <div className="containertri"
         style={{
           backgroundImage: `url('/ESPACIO.jpeg')`, 
           backgroundSize: 'cover',
