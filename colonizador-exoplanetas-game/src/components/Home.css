@@ -1,29 +1,40 @@
-#textblock {
-    /*background-image: url('../images/PLANETA_INF.png');*/
-    background-color: #0c1428;
-    height: 1000px;
-    /*background-size: contain;
-    background-position: top center;
-    background-repeat: no-repeat;*/
-    background-size: 50%;
+/* Contenedor principal para evitar scroll extra */
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
-  
+
+/* Parallax sin overflow */
+main {
+    overflow: hidden;
+}
+
+/* Estilo del contenedor de texto */
+#textblock {
+    background-color: #0c1428;
+    padding: 0px;
+}
+
 #textblock-container {
     width: 50%;
     margin: 0 auto;
-    padding-top: 70px;
+    padding-top: 60px;
+    padding-bottom: 60px; /* Agrega espacio extra debajo del bloque de texto */
 }
-  
+
 #textblock-title {
     color: #28c9ac;
     font-size: 35px;
     font-weight: 600;
     font-family: "Helvetica Neue";
+    margin-bottom: 30px;
 }
-  
+
 #textblock-content {
     color: #d5e2ed;
     font-size: 20px;
+    margin-bottom: 80px;
 }
   
 #textblock-footer {
@@ -36,7 +47,7 @@
     justify-content:center;
     align-items:center;
     text-align:center;
-    margin-bottom: 20px;  
+    margin-bottom: 50px;  
 }
   
 #textblock-devsense {
